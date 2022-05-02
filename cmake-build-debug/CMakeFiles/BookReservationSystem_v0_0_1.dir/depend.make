@@ -8,19 +8,16 @@ CMakeFiles\BookReservationSystem_v0_0_1.dir\Customer.cpp.obj: ..\Book.h
 CMakeFiles\BookReservationSystem_v0_0_1.dir\Customer.cpp.obj: ..\Customer.cpp
 CMakeFiles\BookReservationSystem_v0_0_1.dir\Customer.cpp.obj: ..\Customer.h
 
+CMakeFiles\BookReservationSystem_v0_0_1.dir\DatabaseConnection.cpp.obj: ..\Book.h
+CMakeFiles\BookReservationSystem_v0_0_1.dir\DatabaseConnection.cpp.obj: ..\Customer.h
 CMakeFiles\BookReservationSystem_v0_0_1.dir\DatabaseConnection.cpp.obj: ..\DatabaseConnection.cpp
 CMakeFiles\BookReservationSystem_v0_0_1.dir\DatabaseConnection.cpp.obj: ..\DatabaseConnection.h
-
-CMakeFiles\BookReservationSystem_v0_0_1.dir\Disc.cpp.obj: ..\Disc.cpp
-CMakeFiles\BookReservationSystem_v0_0_1.dir\Disc.cpp.obj: ..\Disc.h
 
 CMakeFiles\BookReservationSystem_v0_0_1.dir\GUI.cpp.obj: GUI.cpp
 CMakeFiles\BookReservationSystem_v0_0_1.dir\GUI.cpp.obj: GUI.h
 
-CMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.obj: ..\Book.h
-CMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.obj: ..\Customer.h
-CMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.obj: ..\RentalRecord.cpp
-CMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.obj: ..\RentalRecord.h
-
+CMakeFiles\BookReservationSystem_v0_0_1.dir\main.cpp.obj: ..\Book.h
+CMakeFiles\BookReservationSystem_v0_0_1.dir\main.cpp.obj: ..\Customer.h
+CMakeFiles\BookReservationSystem_v0_0_1.dir\main.cpp.obj: ..\DatabaseConnection.h
 CMakeFiles\BookReservationSystem_v0_0_1.dir\main.cpp.obj: ..\main.cpp
 

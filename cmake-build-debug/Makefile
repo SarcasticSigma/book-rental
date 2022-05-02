@@ -190,30 +190,6 @@ DatabaseConnection.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\BookReservationSystem_v0_0_1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\BookReservationSystem_v0_0_1.dir\DatabaseConnection.cpp.s
 .PHONY : DatabaseConnection.cpp.s
 
-Disc.obj: Disc.cpp.obj
-.PHONY : Disc.obj
-
-# target to build an object file
-Disc.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BookReservationSystem_v0_0_1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\BookReservationSystem_v0_0_1.dir\Disc.cpp.obj
-.PHONY : Disc.cpp.obj
-
-Disc.i: Disc.cpp.i
-.PHONY : Disc.i
-
-# target to preprocess a source file
-Disc.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BookReservationSystem_v0_0_1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\BookReservationSystem_v0_0_1.dir\Disc.cpp.i
-.PHONY : Disc.cpp.i
-
-Disc.s: Disc.cpp.s
-.PHONY : Disc.s
-
-# target to generate assembly for a file
-Disc.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BookReservationSystem_v0_0_1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\BookReservationSystem_v0_0_1.dir\Disc.cpp.s
-.PHONY : Disc.cpp.s
-
 GUI.obj: GUI.cpp.obj
 .PHONY : GUI.obj
 
@@ -237,54 +213,6 @@ GUI.s: GUI.cpp.s
 GUI.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\BookReservationSystem_v0_0_1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\BookReservationSystem_v0_0_1.dir\GUI.cpp.s
 .PHONY : GUI.cpp.s
-
-RentalRecord.obj: RentalRecord.cpp.obj
-.PHONY : RentalRecord.obj
-
-# target to build an object file
-RentalRecord.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BookReservationSystem_v0_0_1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.obj
-.PHONY : RentalRecord.cpp.obj
-
-RentalRecord.i: RentalRecord.cpp.i
-.PHONY : RentalRecord.i
-
-# target to preprocess a source file
-RentalRecord.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BookReservationSystem_v0_0_1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.i
-.PHONY : RentalRecord.cpp.i
-
-RentalRecord.s: RentalRecord.cpp.s
-.PHONY : RentalRecord.s
-
-# target to generate assembly for a file
-RentalRecord.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BookReservationSystem_v0_0_1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.s
-.PHONY : RentalRecord.cpp.s
-
-Time.obj: Time.cpp.obj
-.PHONY : Time.obj
-
-# target to build an object file
-Time.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BookReservationSystem_v0_0_1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\BookReservationSystem_v0_0_1.dir\Time.cpp.obj
-.PHONY : Time.cpp.obj
-
-Time.i: Time.cpp.i
-.PHONY : Time.i
-
-# target to preprocess a source file
-Time.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BookReservationSystem_v0_0_1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\BookReservationSystem_v0_0_1.dir\Time.cpp.i
-.PHONY : Time.cpp.i
-
-Time.s: Time.cpp.s
-.PHONY : Time.s
-
-# target to generate assembly for a file
-Time.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\BookReservationSystem_v0_0_1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\BookReservationSystem_v0_0_1.dir\Time.cpp.s
-.PHONY : Time.cpp.s
 
 main.obj: main.cpp.obj
 .PHONY : main.obj
@@ -328,18 +256,9 @@ help:
 	@echo ... DatabaseConnection.obj
 	@echo ... DatabaseConnection.i
 	@echo ... DatabaseConnection.s
-	@echo ... Disc.obj
-	@echo ... Disc.i
-	@echo ... Disc.s
 	@echo ... GUI.obj
 	@echo ... GUI.i
 	@echo ... GUI.s
-	@echo ... RentalRecord.obj
-	@echo ... RentalRecord.i
-	@echo ... RentalRecord.s
-	@echo ... Time.obj
-	@echo ... Time.i
-	@echo ... Time.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

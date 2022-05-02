@@ -13,6 +13,7 @@
 #include <iomanip>
 #include <vector>
 #include <ctime>
+#include "Customer.h"
 
 using std::string;
 using std::ofstream;
@@ -22,15 +23,19 @@ using std::ifstream;
 
 class DatabaseConnection {
 private:
-ofstream writeStream;
-ifstream readStream;
-string targetCustomerFile;
-string targetBookFile;
-string targetRentalRecordFile;
-
+string targetCustomerFile = "data/Customers.txt";
+string targetBookFile = "data/Books.txt";
 
 public:
     DatabaseConnection();
+    static bool IsPathExist(const std::string &s);
+    inline bool fileExists (const std::string& name);
+    void WriteCustomer(Customer customer);
+    void WriteBook(Book book);
+    vector<Customer> readCustomers();
+    vector<Book> readBooks();
+
+
 };
 
 

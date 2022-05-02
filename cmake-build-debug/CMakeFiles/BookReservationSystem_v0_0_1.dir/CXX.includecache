@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/main.cpp
+C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Book.h
 iostream
 -
 string
@@ -17,8 +17,22 @@ vector
 -
 ctime
 -
-chrono
+
+C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Customer.cpp
+Customer.h
+C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Customer.h
+utility
 -
-ctime
+
+C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Customer.h
+iostream
 -
+string
+-
+iomanip
+-
+vector
+-
+Book.h
+C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Book.h
 

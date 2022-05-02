@@ -100,24 +100,6 @@
 		<Unit filename="C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/DatabaseConnection.h">
 			<Option target="BookReservationSystem_v0_0_1"/>
 		</Unit>
-		<Unit filename="C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Disc.cpp">
-			<Option target="BookReservationSystem_v0_0_1"/>
-		</Unit>
-		<Unit filename="C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Disc.h">
-			<Option target="BookReservationSystem_v0_0_1"/>
-		</Unit>
-		<Unit filename="C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/RentalRecord.cpp">
-			<Option target="BookReservationSystem_v0_0_1"/>
-		</Unit>
-		<Unit filename="C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/RentalRecord.h">
-			<Option target="BookReservationSystem_v0_0_1"/>
-		</Unit>
-		<Unit filename="C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Time.cpp">
-			<Option target="BookReservationSystem_v0_0_1"/>
-		</Unit>
-		<Unit filename="C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Time.h">
-			<Option target="BookReservationSystem_v0_0_1"/>
-		</Unit>
 		<Unit filename="C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/cmake-build-debug/GUI.cpp">
 			<Option target="BookReservationSystem_v0_0_1"/>
 		</Unit>

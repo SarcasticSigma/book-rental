@@ -22,18 +22,20 @@ using std::istream;
 class Customer {
 private:
     string name, address, phoneNumber;
-    Date registerDate;
-    vector<Book> borrowedBooks;
+    tm registerDate;
+    vector<int> borrowedBookIds;
+
     //Checks if the customer can borrow more books.
     bool _canBorrowMoreBooks();
+
     /// Removes the book from the borrowed book list.
     /// \param book The book to remove.
     /// \return Whether the book was successfully removed.
-    bool _deleteBookFromRental(Book book);
+    void _deleteBookFromRental(const Book& book);
+
     /// Adds the book to the borrowed book list.
     /// \param book The book to add.
-    /// \return Whether the book was successfully added.
-    bool _addBookToRental(Book book);
+    void _addBookToRental(const Book& book);
 
 public:
     Customer(string name, string address, string phoneNumber, tm registerDate);
@@ -47,30 +49,34 @@ public:
 
     void setPhoneNumber(string phoneNumber);
 
-    void setRegisterDate();
+    void setRegisterDate(tm registerDate);
 
     string getName();
+
     string getAddress();
+
     string getPhoneNumber();
+
     tm getRegisterDate();
 
     /// Borrows a book to the customer.
     /// \param book The book to borrow.
     /// \return Whether or not the book was succesfully borrowed.
     bool borrowBook(Book book);
+
     /// Gets the amount the customer owes on a book.
     /// \return
     double getOwedForBook();
+
 /// Sums the total owed for all borrowed books.
 /// \return
     double getTotalOwed();
 
-        double returnBook(Book book);
+    double returnBook(Book book);
 
 
 
-
-
+    std::string getWritableString();
 };
 
 

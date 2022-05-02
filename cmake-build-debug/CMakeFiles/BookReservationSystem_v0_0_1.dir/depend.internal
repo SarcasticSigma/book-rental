@@ -9,18 +9,15 @@ CMakeFiles/BookReservationSystem_v0_0_1.dir/Customer.cpp.obj
  C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Customer.cpp
  C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Customer.h
 CMakeFiles/BookReservationSystem_v0_0_1.dir/DatabaseConnection.cpp.obj
+ C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Book.h
+ C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Customer.h
  C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/DatabaseConnection.cpp
  C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/DatabaseConnection.h
-CMakeFiles/BookReservationSystem_v0_0_1.dir/Disc.cpp.obj
- C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Disc.cpp
- C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Disc.h
 CMakeFiles/BookReservationSystem_v0_0_1.dir/GUI.cpp.obj
  C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/cmake-build-debug/GUI.cpp
  C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/cmake-build-debug/GUI.h
-CMakeFiles/BookReservationSystem_v0_0_1.dir/RentalRecord.cpp.obj
+CMakeFiles/BookReservationSystem_v0_0_1.dir/main.cpp.obj
  C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Book.h
  C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/Customer.h
- C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/RentalRecord.cpp
- C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/RentalRecord.h
-CMakeFiles/BookReservationSystem_v0_0_1.dir/main.cpp.obj
+ C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/DatabaseConnection.h
  C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/main.cpp

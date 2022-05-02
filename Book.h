@@ -10,7 +10,6 @@
 #include <iomanip>
 #include <vector>
 #include <ctime>
-#include "Date.h"
 
 using std::cout;
 using std::cin;
@@ -23,13 +22,18 @@ using std::istream;
 
 class Book {
 private:
+
+
+    int bookId;
     bool isAvailable;
     string title, author, publisher;
-    Date releaseDate;
-    int borrowedByCustomerId;
-public:
-    Book(string title, string author, string publisher, tm releaseDate, bool isAvailable = true);
+    tm releaseDate{};
 
+
+public:
+    Book(int bookId, string title, string author, string publisher, tm releaseDate, bool isAvailable=true);
+int getBookId() const;
+    bool Equals(const Book& book) const ;
 };
 
 
