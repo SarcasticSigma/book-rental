@@ -54,11 +54,11 @@ bool DatabaseConnection::fileExists(const string &name) {
 }
 
 
-vector<string> DatabaseConnection::getCustomersBorrowedBooks(const string &customerName) {
-    vector<string> booksBorrowedBy;
+vector<Book> DatabaseConnection::getCustomersBorrowedBooks(const string &customerName) {
+    vector<Book> booksBorrowedBy;
     for (Book b : bookList) {
         if (b.getBorrowedBy() == customerName) {
-            booksBorrowedBy.push_back(b.title);
+            booksBorrowedBy.push_back(b);
         }
     }
     return booksBorrowedBy;

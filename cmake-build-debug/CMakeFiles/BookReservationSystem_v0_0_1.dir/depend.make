@@ -9,6 +9,7 @@ CMakeFiles\BookReservationSystem_v0_0_1.dir\Book.cpp.obj: ..\DatabaseConnection.
 CMakeFiles\BookReservationSystem_v0_0_1.dir\Customer.cpp.obj: ..\Book.h
 CMakeFiles\BookReservationSystem_v0_0_1.dir\Customer.cpp.obj: ..\Customer.cpp
 CMakeFiles\BookReservationSystem_v0_0_1.dir\Customer.cpp.obj: ..\Customer.h
+CMakeFiles\BookReservationSystem_v0_0_1.dir\Customer.cpp.obj: ..\DatabaseConnection.h
 
 CMakeFiles\BookReservationSystem_v0_0_1.dir\DatabaseConnection.cpp.obj: ..\Book.h
 CMakeFiles\BookReservationSystem_v0_0_1.dir\DatabaseConnection.cpp.obj: ..\Customer.h

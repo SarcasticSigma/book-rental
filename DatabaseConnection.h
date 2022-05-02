@@ -49,7 +49,7 @@ public:
 
     void reloadData();
 
-    vector<string> getCustomersBorrowedBooks(const string &customerName);
+    vector<Book> getCustomersBorrowedBooks(const string &customerName);
 
     void deleteCustomer(const string &customerName);
 };

@@ -4,8 +4,9 @@
 
 #include "Book.h"
 #include "DatabaseConnection.h"
-
+#include <chrono>
 #include <utility>
+using namespace std::literals;
 
 Book::Book(string title, string author, string publisher, int releaseYear, int releaseMonth, int releaseDay,
            bool isAvailable) {
@@ -50,7 +51,10 @@ Book::Book(const string &writtenString) {
     } else {
         this->isAvailable = false;
     }
-
+    this->dueDate = tm();
+    dueDate.tm_year = stoi(dataStrings[7]);
+    dueDate.tm_mon = stoi(dataStrings[8]);
+    dueDate.tm_mday = stoi(dataStrings[9]);
 }
 
 string Book::getWritableString() {
@@ -72,6 +76,13 @@ string Book::getWritableString() {
         stringBuilder += "0";
         stringBuilder += "_";
         stringBuilder += borrowedBy;
+        stringBuilder += "_";
+        stringBuilder += dueDate.tm_year;
+        stringBuilder += "_";
+        stringBuilder += dueDate.tm_mon;
+        stringBuilder += "_";
+        stringBuilder += dueDate.tm_mday;
+
     }
     stringBuilder += "_";
     stringBuilder += "0";
@@ -85,11 +96,11 @@ string Book::getOverviewData() {
     builderString += title;
 
     DatabaseConnection myDBCon = DatabaseConnection();
-    vector<string> books;
+    vector<Book> books;
     for (Customer customer : myDBCon.customerList) {
         books = db.getCustomersBorrowedBooks(customer.getName());
     }
-    for(string str : books){
+    for(Book book : books){
 
     }
     builderString += " Available? ";
@@ -99,7 +110,11 @@ string Book::getOverviewData() {
 }
 
 void Book::borrowBook(string customerName) {
-    //TODO: Set borrow date.
+    std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
+    std::chrono::system_clock::time_point newTimePoint = tp + (7*24h);
+    time_t tt = std::chrono::system_clock::to_time_t(newTimePoint);
+    tm local_tm = *localtime(&tt);
+    this->dueDate=local_tm;
     this->isAvailable = false;
     this->borrowedBy = std::move(customerName);
 

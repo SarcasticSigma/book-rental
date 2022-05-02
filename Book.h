@@ -27,7 +27,7 @@ public:
     string borrowedBy;
     string title, author, publisher;
     tm releaseDate{};
-
+tm dueDate;
 
     Book(string title, string author, string publisher, int releaseYear, int releaseMonth, int releaseDay,
          bool isAvailable = true);

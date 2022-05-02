@@ -1,4 +1,5 @@
 #include "Customer.h"
+#include "DatabaseConnection.h"
 #include <utility>
 
 Customer::Customer(string name, string address, string phoneNumber, tm registerDate = tm()) {
@@ -129,5 +130,27 @@ Customer::Customer(string writtenString) {
 }
 
 string Customer::getOverviewData() {
+    string builderString;
+    DatabaseConnection db = DatabaseConnection();
+
+
+    for (const Customer &c : db.customerList) {
+        vector<Book> borrowedList = db.getCustomersBorrowedBooks(c.name);
+        if (!borrowedList.empty()) {
+            for (const Book &borrowed : borrowedList) {
+                builderString += c.name + " ";
+                builderString += borrowed.title + " ";
+                //TODO: Implement Due dates in Book
+                builderString += std::to_string(borrowed.dueDate.tm_mday);
+                builderString += '/';
+                builderString += std::to_string(borrowed.dueDate.tm_mon);
+                builderString += '/';
+                builderString += std::to_string(borrowed.dueDate.tm_year);
+            }
+        }
+
+
+    }
+
     return std::string();
 }
