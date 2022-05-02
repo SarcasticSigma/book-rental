@@ -9,7 +9,7 @@
 #include <string>
 #include <iomanip>
 #include <vector>
-#include <ctime>
+#include "Book.h"
 
 using std::cout;
 using std::cin;
@@ -22,16 +22,54 @@ using std::istream;
 class Customer {
 private:
     string name, address, phoneNumber;
-    tm registerDate;
-    vector<int> borrowedBookIds;
+    Date registerDate;
+    vector<Book> borrowedBooks;
+    //Checks if the customer can borrow more books.
+    bool _canBorrowMoreBooks();
+    /// Removes the book from the borrowed book list.
+    /// \param book The book to remove.
+    /// \return Whether the book was successfully removed.
+    bool _deleteBookFromRental(Book book);
+    /// Adds the book to the borrowed book list.
+    /// \param book The book to add.
+    /// \return Whether the book was successfully added.
+    bool _addBookToRental(Book book);
+
 public:
-    Customer(string name, string address, string phoneNumber, tm registerDate);\
+    Customer(string name, string address, string phoneNumber, tm registerDate);
+
+    //Getters and setters.
     void setName(string
-    name);
+                 name);
+
     void setAddress(string
-    address);
+                    address);
+
     void setPhoneNumber(string phoneNumber);
+
     void setRegisterDate();
+
+    string getName();
+    string getAddress();
+    string getPhoneNumber();
+    tm getRegisterDate();
+
+    /// Borrows a book to the customer.
+    /// \param book The book to borrow.
+    /// \return Whether or not the book was succesfully borrowed.
+    bool borrowBook(Book book);
+    /// Gets the amount the customer owes on a book.
+    /// \return
+    double getOwedForBook();
+/// Sums the total owed for all borrowed books.
+/// \return
+    double getTotalOwed();
+
+        double returnBook(Book book);
+
+
+
+
 
 };
 

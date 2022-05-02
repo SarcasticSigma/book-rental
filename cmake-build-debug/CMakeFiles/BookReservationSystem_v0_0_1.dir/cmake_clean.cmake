@@ -8,6 +8,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/BookReservationSystem_v0_0_1.dir/DatabaseConnection.cpp.obj"
   "CMakeFiles/BookReservationSystem_v0_0_1.dir/Disc.cpp.obj"
   "CMakeFiles/BookReservationSystem_v0_0_1.dir/GUI.cpp.obj"
+  "CMakeFiles/BookReservationSystem_v0_0_1.dir/RentalRecord.cpp.obj"
+  "CMakeFiles/BookReservationSystem_v0_0_1.dir/Time.cpp.obj"
   "CMakeFiles/BookReservationSystem_v0_0_1.dir/main.cpp.obj"
 )
 

@@ -169,6 +169,44 @@ CMakeFiles\BookReservationSystem_v0_0_1.dir\Book.cpp.s: cmake_force
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\BookReservationSystem_v0_0_1.dir\Book.cpp.s /c C:\Users\coldc\CLionProjects\BookReservationSystem-v0.0.1\Book.cpp
 <<
 
+CMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.obj: CMakeFiles\BookReservationSystem_v0_0_1.dir\flags.make
+CMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.obj: ..\RentalRecord.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\coldc\CLionProjects\BookReservationSystem-v0.0.1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/BookReservationSystem_v0_0_1.dir/RentalRecord.cpp.obj"
+	"C:\PROGRA~2\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29910\bin\Hostx86\x86\cl.exe" @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.obj /FdCMakeFiles\BookReservationSystem_v0_0_1.dir\ /FS -c C:\Users\coldc\CLionProjects\BookReservationSystem-v0.0.1\RentalRecord.cpp
+<<
+
+CMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BookReservationSystem_v0_0_1.dir/RentalRecord.cpp.i"
+	"C:\PROGRA~2\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29910\bin\Hostx86\x86\cl.exe" > CMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\coldc\CLionProjects\BookReservationSystem-v0.0.1\RentalRecord.cpp
+<<
+
+CMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BookReservationSystem_v0_0_1.dir/RentalRecord.cpp.s"
+	"C:\PROGRA~2\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29910\bin\Hostx86\x86\cl.exe" @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.s /c C:\Users\coldc\CLionProjects\BookReservationSystem-v0.0.1\RentalRecord.cpp
+<<
+
+CMakeFiles\BookReservationSystem_v0_0_1.dir\Time.cpp.obj: CMakeFiles\BookReservationSystem_v0_0_1.dir\flags.make
+CMakeFiles\BookReservationSystem_v0_0_1.dir\Time.cpp.obj: ..\Time.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\coldc\CLionProjects\BookReservationSystem-v0.0.1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/BookReservationSystem_v0_0_1.dir/Time.cpp.obj"
+	"C:\PROGRA~2\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29910\bin\Hostx86\x86\cl.exe" @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\BookReservationSystem_v0_0_1.dir\Time.cpp.obj /FdCMakeFiles\BookReservationSystem_v0_0_1.dir\ /FS -c C:\Users\coldc\CLionProjects\BookReservationSystem-v0.0.1\Time.cpp
+<<
+
+CMakeFiles\BookReservationSystem_v0_0_1.dir\Time.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BookReservationSystem_v0_0_1.dir/Time.cpp.i"
+	"C:\PROGRA~2\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29910\bin\Hostx86\x86\cl.exe" > CMakeFiles\BookReservationSystem_v0_0_1.dir\Time.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\coldc\CLionProjects\BookReservationSystem-v0.0.1\Time.cpp
+<<
+
+CMakeFiles\BookReservationSystem_v0_0_1.dir\Time.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BookReservationSystem_v0_0_1.dir/Time.cpp.s"
+	"C:\PROGRA~2\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29910\bin\Hostx86\x86\cl.exe" @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\BookReservationSystem_v0_0_1.dir\Time.cpp.s /c C:\Users\coldc\CLionProjects\BookReservationSystem-v0.0.1\Time.cpp
+<<
+
 # Object files for target BookReservationSystem_v0_0_1
 BookReservationSystem_v0_0_1_OBJECTS = \
 "CMakeFiles\BookReservationSystem_v0_0_1.dir\main.cpp.obj" \
@@ -176,7 +214,9 @@ BookReservationSystem_v0_0_1_OBJECTS = \
 "CMakeFiles\BookReservationSystem_v0_0_1.dir\Disc.cpp.obj" \
 "CMakeFiles\BookReservationSystem_v0_0_1.dir\DatabaseConnection.cpp.obj" \
 "CMakeFiles\BookReservationSystem_v0_0_1.dir\GUI.cpp.obj" \
-"CMakeFiles\BookReservationSystem_v0_0_1.dir\Book.cpp.obj"
+"CMakeFiles\BookReservationSystem_v0_0_1.dir\Book.cpp.obj" \
+"CMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.obj" \
+"CMakeFiles\BookReservationSystem_v0_0_1.dir\Time.cpp.obj"
 
 # External object files for target BookReservationSystem_v0_0_1
 BookReservationSystem_v0_0_1_EXTERNAL_OBJECTS =
@@ -187,9 +227,11 @@ BookReservationSystem_v0_0_1.exe: CMakeFiles\BookReservationSystem_v0_0_1.dir\Di
 BookReservationSystem_v0_0_1.exe: CMakeFiles\BookReservationSystem_v0_0_1.dir\DatabaseConnection.cpp.obj
 BookReservationSystem_v0_0_1.exe: CMakeFiles\BookReservationSystem_v0_0_1.dir\GUI.cpp.obj
 BookReservationSystem_v0_0_1.exe: CMakeFiles\BookReservationSystem_v0_0_1.dir\Book.cpp.obj
+BookReservationSystem_v0_0_1.exe: CMakeFiles\BookReservationSystem_v0_0_1.dir\RentalRecord.cpp.obj
+BookReservationSystem_v0_0_1.exe: CMakeFiles\BookReservationSystem_v0_0_1.dir\Time.cpp.obj
 BookReservationSystem_v0_0_1.exe: CMakeFiles\BookReservationSystem_v0_0_1.dir\build.make
 BookReservationSystem_v0_0_1.exe: CMakeFiles\BookReservationSystem_v0_0_1.dir\objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\coldc\CLionProjects\BookReservationSystem-v0.0.1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable BookReservationSystem_v0_0_1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\coldc\CLionProjects\BookReservationSystem-v0.0.1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable BookReservationSystem_v0_0_1.exe"
 	"D:\Program Files\CLion 2021.2\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\BookReservationSystem_v0_0_1.dir --rc="C:\PROGRA~2\Windows Kits\10\bin\10.0.19041.0\x86\rc.exe" --mt="C:\PROGRA~2\Windows Kits\10\bin\10.0.19041.0\x86\mt.exe" --manifests -- "C:\PROGRA~2\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29910\bin\Hostx86\x86\link.exe" /nologo @CMakeFiles\BookReservationSystem_v0_0_1.dir\objects1.rsp @<<
  /out:BookReservationSystem_v0_0_1.exe /implib:BookReservationSystem_v0_0_1.lib /pdb:C:\Users\coldc\CLionProjects\BookReservationSystem-v0.0.1\cmake-build-debug\BookReservationSystem_v0_0_1.pdb /version:0.0 /machine:X86 /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<
