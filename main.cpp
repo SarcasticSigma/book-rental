@@ -58,6 +58,7 @@ int main() {
                    "last name, "
                    "address, "
                    "and phone number pressing enter after each entry." << endl;
+        cin.ignore(1, '\n');
         string name, address, phoneNumber;
         std::getline(cin, name);
         std::getline(cin,address);
@@ -87,25 +88,52 @@ int main() {
         std::getline(cin, month);
         std::getline(cin, day);
 
-        db.addBook(Book(title, author, publisher, stoi(year), stoi(month), stoi(day)));
+        db.addBook(Book(title, author, publisher, stoi(year)-1900, stoi(month), stoi(day)));
     }
-    //Delete Book
-    else if (target == 4) {
-    }
+
     //Rent Book
-    else if (target == 5) {
+    else if (target == 4) {
+        for(Book book : db.bookList){
+            string targetBookName, targetCustomerName;
+            cout << "Please enter the name of the customer borrowing the book:";
+            cin >> targetCustomerName;
+            bool flagCustomerExists = false;
+            for(Customer customer : db.customerList){
+                if (customer.getName() == targetCustomerName){
+                    flagCustomerExists = true;
+                }
+            }
+            if(!flagCustomerExists){
+                cout << "That customer doesn't exists!";
+                //TODO: Handle user
+                break;
+            }
+            cout << "Please enter the name of the book you want to borrow (ensure it's available)";
+            cin >> targetBookName;
+            if(book.title == targetBookName){
+                if(book.isAvailable){
+                    book.borrowBook(targetCustomerName);
+                }else{
+                    cout << "That book's not available.";
+                }
+            }
+        }
+        cout<<"Please try again later";
 
     }
     //Return Book
-    else if (target == 6) {
+    else if (target == 5) {
 
     }
     //List all customers
-    else if (target == 7) {
-
+    else if (target == 6) {
+vector<Customer> customerList = db.customerList;
+for(Customer c : customerList){
+    cout << c.getOverviewData();
+}
     }
     //List all books
-    else if (target == 8) {
+    else if (target == 7) {
         vector<Book> bookList = db.bookList;
         for (Book b : bookList) {
             cout << b.getOverviewData();
@@ -118,12 +146,12 @@ int main() {
 int getTargetFunction() {
     int userInput;
     cout
-            << "What would you like to do? \n1. Add customer\n2. Delete Customer\n3. Add book\n4.Delete Book\n5. Rent a book out\n6. Return a book\n7. List all customers\n8. List all books"
+            << "What would you like to do? \n1. Add customer\n2. Delete Customer\n3. Add book\n4. Rent a book out\n5. Return a book\n6. List all customers\n7. List all books"
             << endl;;
 
     while (true) {
         cin >> userInput;
-        if (userInput > 0 && userInput <= 8) {
+        if (userInput > 0 && userInput <= 7) {
             break;
         } else {
             cout

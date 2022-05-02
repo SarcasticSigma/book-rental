@@ -9,13 +9,6 @@
 
 Book::Book(string title, string author, string publisher, int releaseYear, int releaseMonth, int releaseDay,
            bool isAvailable) {
-
-
-
-    DatabaseConnection db = DatabaseConnection();
-//TODO: Get book ids
-    this->bookId = bookId;
-
     this->author = std::move(author);
     this->title = std::move(title);
     this->publisher = std::move(publisher);
@@ -28,15 +21,12 @@ Book::Book(string title, string author, string publisher, int releaseYear, int r
 }
 
 
-int Book::getBookId() const {
-    return this->bookId;
-}
-
 Book::Book(const string &writtenString) {
+    string outputString = Customer::decryptSpaces(writtenString);
     vector<string> dataStrings = vector<string>();
     string dataString;
-    for (char c : writtenString) {
-        if (c != '_') {
+    for (char c : outputString) {
+        if (c == '_') {
             dataStrings.push_back(dataString);
             dataString = "";
         } else {
@@ -44,19 +34,18 @@ Book::Book(const string &writtenString) {
         }
     }
     dataStrings.push_back(dataString);
-    this->bookId = stoi(dataStrings[0]);
-    this->title = dataStrings[1];
-    this->author = dataStrings[2];
-    this->publisher = dataStrings[3];
-    int yearSince1900 = stoi(dataStrings[4]);
-    int month = stoi(dataStrings[5]);
-    int day = stoi(dataStrings[6]);
+    this->title = dataStrings[0];
+    this->author = dataStrings[1];
+    this->publisher = dataStrings[2];
+    int yearSince1900 = stoi(dataStrings[3]);
+    int month = stoi(dataStrings[4]);
+    int day = stoi(dataStrings[5]);
     tm targetDate = tm();
     targetDate.tm_year = yearSince1900;
     targetDate.tm_mon = month;
     targetDate.tm_mday = day;
     this->releaseDate = targetDate;
-    if (stoi(dataStrings[7]) == 1) {
+    if (stoi(dataStrings[6]) == 1) {
         this->isAvailable = true;
     } else {
         this->isAvailable = false;
@@ -90,18 +79,12 @@ string Book::getWritableString() {
     return stringBuilder;
 }
 
-int Book::_getNextId() {
-    DatabaseConnection db = DatabaseConnection();
-    return db.bookList.size() + 1;
-
-}
-
 string Book::getOverviewData() {
     string builderString;
     DatabaseConnection db = DatabaseConnection();
     builderString += title;
+
     DatabaseConnection myDBCon = DatabaseConnection();
-    bool isBorrowed = false;
     vector<string> books;
     for (Customer customer : myDBCon.customerList) {
         books = db.getCustomersBorrowedBooks(customer.getName());
@@ -109,12 +92,14 @@ string Book::getOverviewData() {
     for(string str : books){
 
     }
+    builderString += " Available? ";
     builderString += isAvailable ? "Yes" : "No";
     builderString += "\n";
     return builderString;
 }
 
 void Book::borrowBook(string customerName) {
+    //TODO: Set borrow date.
     this->isAvailable = false;
     this->borrowedBy = std::move(customerName);
 
@@ -123,3 +108,10 @@ void Book::borrowBook(string customerName) {
 string Book::getBorrowedBy() {
     return this->borrowedBy;
 }
+
+double Book::returnBook(string customerName) {
+    //TODO: return the cost of returning the book.
+    return 0;
+}
+
+

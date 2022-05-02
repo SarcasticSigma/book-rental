@@ -128,5 +128,6 @@ Customer::Customer(string writtenString) {
 
 }
 
-
-
+string Customer::getOverviewData() {
+    return std::string();
+}

@@ -93,6 +93,7 @@ void DatabaseConnection::_saveCustomers() {
 }
 
 void DatabaseConnection::deleteCustomer(const string &customerName) {
+    //TODO: Don't allow deletion unless no books are borrowed.
     vector<Customer> saveCustomerList = this->customerList;
     ofstream out(targetCustomerFile, ofstream::trunc);
     for (Customer customer : saveCustomerList) {
@@ -101,6 +102,7 @@ void DatabaseConnection::deleteCustomer(const string &customerName) {
         }
     }
     out.close();
+    reloadData();
 }
 
 void DatabaseConnection::reloadData() {
@@ -115,7 +117,9 @@ void DatabaseConnection::reloadData() {
     if (myFile.is_open()) {
         while (myFile) {
             std::getline(myFile, serializedCustomer);
-            customerList.emplace_back(serializedCustomer);
+            if (!serializedCustomer.empty()) {
+                customerList.emplace_back(serializedCustomer);
+            }
         }
     }
     myFile.close();
@@ -123,7 +127,9 @@ void DatabaseConnection::reloadData() {
     if (myFile.is_open()) {
         while (myFile) {
             std::getline(myFile, serializedBook);
-            bookList.emplace_back(serializedBook);
+            if (!serializedBook.empty()) {
+                bookList.emplace_back(serializedBook);
+            }
         }
     }
 }
@@ -140,7 +146,9 @@ void DatabaseConnection::loadBooks() {
     if (myFile.is_open()) {
         while (myFile) {
             std::getline(myFile, serializedBook);
-            bookList.emplace_back(serializedBook);
+            if (!serializedBook.empty()) {
+                bookList.emplace_back(serializedBook);
+            }
         }
     }
 
@@ -154,7 +162,9 @@ void DatabaseConnection::loadCustomers() {
     if (myFile.is_open()) {
         while (myFile) {
             std::getline(myFile, serializedCustomer);
-            customerList.emplace_back(serializedCustomer);
+            if (!serializedCustomer.empty()) {
+                customerList.emplace_back(serializedCustomer);
+            }
         }
     }
 }

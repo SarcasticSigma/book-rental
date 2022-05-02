@@ -90,6 +90,7 @@ public:
     std::string getWritableString();
 
 
+    string getOverviewData();
 };
 
 

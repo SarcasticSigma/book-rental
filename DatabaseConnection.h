@@ -20,32 +20,38 @@ using std::ofstream;
 using std::ifstream;
 
 
-
 class DatabaseConnection {
 private:
-string targetCustomerFile = "data/Customers.txt";
-string targetBookFile = "data/Books.txt";
+    string targetCustomerFile = "data/Customers.txt";
+    string targetBookFile = "data/Books.txt";
 
 public:
     vector<Customer> customerList;
     vector<Book> bookList;
+
     DatabaseConnection();
-    void addCustomer(const Customer& customer);
-    void addBook(const Book& book);
+
+    void addCustomer(const Customer &customer);
+
+    void addBook(const Book &book);
+
     void _saveBooks();
+
     void _saveCustomers();
+
     static bool IsPathExist(const std::string &s);
-    inline bool fileExists (const std::string& name);
-void loadBooks();
-void loadCustomers();
+
+    inline bool fileExists(const std::string &name);
+
+    void loadBooks();
+
+    void loadCustomers();
+
     void reloadData();
-    bool deleteBook();
 
+    vector<string> getCustomersBorrowedBooks(const string &customerName);
 
-
-vector<string> getCustomersBorrowedBooks(const string &customerName);
-
-    void deleteCustomer(const string& customerName);
+    void deleteCustomer(const string &customerName);
 };
 
 

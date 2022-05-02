@@ -28,8 +28,6 @@ public:
     string title, author, publisher;
     tm releaseDate{};
 
-    static int _getNextId();
-
 
     Book(string title, string author, string publisher, int releaseYear, int releaseMonth, int releaseDay,
          bool isAvailable = true);
@@ -38,8 +36,7 @@ public:
 
 
     void borrowBook(string customerName);
-
-    int getBookId() const;
+double returnBook(string customerName);
 
     string getBorrowedBy();
 
