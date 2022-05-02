@@ -14,7 +14,6 @@ Customer::Customer(string name, string address, string phoneNumber, tm registerD
     this->address = std::move(address);
     this->phoneNumber = std::move(phoneNumber);
     this->registerDate = registerDate;
-    this->borrowedBookIds = std::move(bookIds);
 }
 
 bool Customer::_canBorrowMoreBooks() {
@@ -71,15 +70,6 @@ std::string Customer::getWritableString() {
     stringBuilder +=
             std::to_string(1900 + this->registerDate.tm_year) + "_" + std::to_string(this->registerDate.tm_mon) + "_" +
             std::to_string(this->registerDate.tm_mday);
-    stringBuilder += "_";
-    stringBuilder += "[";
-    for (int i = 0; i < borrowedBookIds.size(); i++) {
-        stringBuilder += std::to_string(i);
-        if (i != borrowedBookIds.size() - 1) {
-            stringBuilder += ",";
-        }
-    }
-    stringBuilder += "]";
     stringBuilder += "\n";
     return stringBuilder;
 }
@@ -131,29 +121,12 @@ Customer::Customer(const string &writtenString) {
     targetDate.tm_mon = month;
     targetDate.tm_mday = day;
 
-    vector<int> bookIdVector = vector<int>();
-    string bookIdString;
-    for (char i : dataStrings[6]) {
-        if (dataStrings[6] == "[]") {
-            break;
-        }
-        if (i == ',') {
-            bookIdVector.push_back(stoi(bookIdString));
-        } else if (i == '[' || i == ']') {
-            bookIdString += i;
-        }
-    }
-
-
     this->name = dataStrings[0];
     this->address = dataStrings[1];
     this->phoneNumber = dataStrings[2];
     this->registerDate = targetDate;
-    this->borrowedBookIds = bookIdVector;
 
 }
 
-vector<int> Customer::getBorrowedBookIds() {
-    return borrowedBookIds;
-}
+
 

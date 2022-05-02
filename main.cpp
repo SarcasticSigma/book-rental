@@ -21,11 +21,8 @@
 #include <sys/stat.h>
 // for windows mkdir
 #ifdef _WIN32
-
 #include <direct.h>
-
 #endif
-
 #include <sys/stat.h>
 #include <sys/stat.h>
 #include <string>
@@ -58,7 +55,7 @@ int main() {
 
 
     DatabaseConnection db = DatabaseConnection();
-    string fName, lName, address, phoneNumber;
+
 
     string title, author, publisher;
     string year, month, day;
@@ -70,9 +67,11 @@ int main() {
                    "last name, "
                    "address (No spaces), "
                    "and phone number pressing enter after each entry." << endl;
-        cin >> fName >> lName >> address >> phoneNumber;
-
-        db.WriteCustomer(Customer((fName + " " + lName), address, phoneNumber, getCurrentTime()));
+        string name, address, phoneNumber;
+        std::getline(cin, name);
+        std::getline(cin,address);
+        std::getline(cin, phoneNumber);
+        db.WriteCustomer(Customer(name, address, phoneNumber, getCurrentTime()));
     }
     //Delete Customer
     else if (target == 2) {
@@ -114,7 +113,7 @@ int main() {
     }
     //List all books
     else if (target == 8) {
-        vector<Book> bookList = db.getBookList();
+        vector<Book> bookList = db.bookList();
         for (Book b : bookList) {
             cout << b.getOverviewData();
         }

@@ -9,6 +9,9 @@
 
 Book::Book(string title, string author, string publisher, int releaseYear, int releaseMonth, int releaseDay,
            bool isAvailable) {
+
+
+
     DatabaseConnection db = DatabaseConnection();
 //TODO: Get book ids
     this->bookId = bookId;
@@ -27,10 +30,6 @@ Book::Book(string title, string author, string publisher, int releaseYear, int r
 
 int Book::getBookId() const {
     return this->bookId;
-}
-
-bool Book::Equals(const Book &book) const {
-    return this->bookId == book.getBookId();
 }
 
 Book::Book(const string &writtenString) {
@@ -91,29 +90,34 @@ string Book::getWritableString() {
 
 int Book::_getNextId() {
     DatabaseConnection db = DatabaseConnection();
-    return db.getBookList().size() + 1;
+    return db.bookList.size() + 1;
 
 }
 
 string Book::getOverviewData() {
     string builderString;
-    builderString += std::to_string(bookId);
-    builderString += title;
     DatabaseConnection db = DatabaseConnection();
+    builderString += title;
+    DatabaseConnection myDBCon = DatabaseConnection();
     bool isBorrowed = false;
-    for (Customer customer : db.getCustomerList()) {
-        for (int i : customer.getBorrowedBookIds()) {
-            if (i == bookId) {
-                builderString += customer.getName();
-                isBorrowed = true;
-                break;
-            }
-        }
-        if (not isBorrowed) {
-            builderString += '-';
-        }
+    vector<string> books;
+    for (Customer customer : myDBCon.customerList) {
+        books = db.getBorrowedBooks(customer.getName());
+    }
+    for(string str : books){
+
     }
     builderString += isAvailable ? "Yes" : "No";
     builderString += "\n";
     return builderString;
+}
+
+void Book::borrowBook(string customerName) {
+    this->isAvailable = false;
+    this->borrowedBy = std::move(customerName);
+
+}
+
+string Book::getBorrowedBy() {
+    return this->borrowedBy;
 }

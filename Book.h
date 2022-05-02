@@ -21,25 +21,27 @@ using std::istream;
 
 
 class Book {
-private:
-
-
+public:
     int bookId = 0;
     bool isAvailable;
+    string borrowedBy;
     string title, author, publisher;
     tm releaseDate{};
 
     static int _getNextId();
 
-public:
+
     Book(string title, string author, string publisher, int releaseYear, int releaseMonth, int releaseDay,
          bool isAvailable = true);
 
     Book(const string &writtenString);
 
+
+    void borrowBook(string customerName);
+
     int getBookId() const;
 
-    bool Equals(const Book &book) const;
+    string getBorrowedBy();
 
     string getWritableString();
 

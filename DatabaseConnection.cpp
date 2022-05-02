@@ -66,16 +66,8 @@ void DatabaseConnection::loadCustomers() {
     this->customerList = readCustomers;
 }
 
-vector<Customer> DatabaseConnection::getCustomerList() {
-    return this->customerList;
-}
-
 bool DatabaseConnection::deleteCustomer(const string &customerName) {
     return false;
-}
-
-vector<Book> DatabaseConnection::getBookList() {
-    return bookList;
 }
 
 void DatabaseConnection::loadBooks() {
@@ -95,26 +87,24 @@ void DatabaseConnection::WriteBook(Book book) {
     out.close();
 }
 
-vector<int> DatabaseConnection::getBorrowedBookIds() {
-    vector<vector<string>> pairs = vector<vector<string>>();
-    DatabaseConnection db = DatabaseConnection();
-    vector<Customer> customers = db.getCustomerList();
-    vector<Book> books = db.getBookList();
-    for (Customer customer : customers) {
-        pairs[0].push_back(customer.getName())
-        for(int i : customer.getBorrowedBookIds()) {
-            pairs[1].push_back(std::to_string(i));
+vector<string> DatabaseConnection::getBorrowedBooks(const string &customerName) {
+    vector<string> booksBorrowedBy;
+    for(Book b : bookList){
+        if(b.getBorrowedBy() == customerName){
+            booksBorrowedBy.push_back(b.title);
         }
     }
-
-    vector<int> borrowedIds = vector<int>();
-
-    loadBooks();
-    for (Book book : bookList) {
-        borrowedIds.push_back(book.getBookId());
-    }
-    return borrowedIds;
+    return booksBorrowedBy;
 }
+
+void DatabaseConnection::saveCustomers() {
+
+}
+
+void DatabaseConnection::saveBooks() {
+
+}
+
 
 //Based on https://stackoverflow.com/a/42114477/14348143
 void eraseFileLine(std::string path, std::string eraseLine) {
