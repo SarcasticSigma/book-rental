@@ -25,15 +25,19 @@ class DatabaseConnection {
 private:
 string targetCustomerFile = "data/Customers.txt";
 string targetBookFile = "data/Books.txt";
-
+vector<Customer> customerList;
+vector<Book> bookList;
 public:
     DatabaseConnection();
     static bool IsPathExist(const std::string &s);
     inline bool fileExists (const std::string& name);
     void WriteCustomer(Customer customer);
     void WriteBook(Book book);
-    vector<Customer> readCustomers();
+    void loadCustomers();
+    vector<Customer> getCustomerList();
     vector<Book> readBooks();
+    bool deleteCustomer();
+    bool deleteBook();
 
 
 };

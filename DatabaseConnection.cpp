@@ -55,3 +55,17 @@ void DatabaseConnection::WriteCustomer(Customer customer) {
     out << customer.getWritableString();
     out.close();
 }
+
+void DatabaseConnection::loadCustomers() {
+    string line;
+    vector<Customer> readCustomers = vector<Customer>();
+    ifstream infile("data/Customers.txt");
+    while (infile >> line) {
+        readCustomers.emplace_back(line);
+    }
+    this->customerList = readCustomers;
+}
+
+vector<Customer> DatabaseConnection::getCustomerList() {
+    return this->customerList;
+}

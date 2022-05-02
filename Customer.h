@@ -21,8 +21,10 @@ using std::istream;
 
 class Customer {
 private:
+    Customer(string name, string address, string phoneNumber, tm registerDate, vector<int> bookIds);
+
     string name, address, phoneNumber;
-    tm registerDate;
+    tm registerDate{};
     vector<int> borrowedBookIds;
 
     //Checks if the customer can borrow more books.
@@ -31,14 +33,23 @@ private:
     /// Removes the book from the borrowed book list.
     /// \param book The book to remove.
     /// \return Whether the book was successfully removed.
-    void _deleteBookFromRental(const Book& book);
+    void _deleteBookIdFromRental(int bookId);
+
+
 
     /// Adds the book to the borrowed book list.
     /// \param book The book to add.
-    void _addBookToRental(const Book& book);
+    void _addBookIdToRental(int bookId);
 
 public:
     Customer(string name, string address, string phoneNumber, tm registerDate);
+
+    Customer(const string& writtenString);
+
+    static string encryptSpaces(const string &decryptedString);
+
+    static string decryptSpaces(const string &encryptedString);
+
 
     //Getters and setters.
     void setName(string
@@ -75,8 +86,9 @@ public:
     double returnBook(Book book);
 
 
-
     std::string getWritableString();
+
+
 };
 
 
