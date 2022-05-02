@@ -53,11 +53,11 @@ int main() {
     DatabaseConnection db = DatabaseConnection();
     if (target == 1) {
         cout
-                << "Please enter the follow information: "
+                << "Please enter the follow information pressing enter after each entry: "
                    "First name, "
                    "last name, "
                    "address, "
-                   "and phone number pressing enter after each entry." << endl;
+                   "and phone number." << endl;
         cin.ignore(1, '\n');
         string name, address, phoneNumber;
         std::getline(cin, name);
@@ -67,14 +67,32 @@ int main() {
     }
     //Delete Customer
     else if (target == 2) {
+        do{
+            string customerName;
+            cout << "What's the name of the customer you would like to delete?";
+            cin.ignore(1, '\n');
+            std::getline(cin,  customerName);
+            bool flagCustomerExists = false;
+            for(Customer customer : db.customerList){
+                if (customer.getName() == customerName){
+                    flagCustomerExists = true;
+                }
+            }
+            if(!flagCustomerExists){
+                cout << "That customer doesn't exists!";
+                //TODO: Handle user
+                break;
+            }
+            db.deleteCustomer(customerName);
+        }while(false);
     }
     //Add Book
     else if (target == 3) {
         string title, author, publisher;
         string year, month, day;
         cout
-                << "Please enter the follow information: "
-                   "Book Title (No spaces), "
+                << "Please enter the following information pressing entry after each entry: "
+                   "Book Title, "
                    "Author, "
                    "Publisher, "
                    "Release year (number)"

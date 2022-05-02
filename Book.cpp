@@ -19,6 +19,7 @@ Book::Book(string title, string author, string publisher, int releaseYear, int r
     constructedReleaseDate.tm_mday = releaseDay;
     this->releaseDate = constructedReleaseDate;
     this->isAvailable = isAvailable;
+    this->dueDate = tm();
 }
 
 
@@ -38,6 +39,7 @@ Book::Book(const string &writtenString) {
     this->title = dataStrings[0];
     this->author = dataStrings[1];
     this->publisher = dataStrings[2];
+    //TODO Get proper offset
     int yearSince1900 = stoi(dataStrings[3]);
     int month = stoi(dataStrings[4]);
     int day = stoi(dataStrings[5]);
@@ -51,12 +53,15 @@ Book::Book(const string &writtenString) {
     } else {
         this->isAvailable = false;
     }
+    this->borrowedBy = dataStrings[7];
+
     this->dueDate = tm();
-    dueDate.tm_year = stoi(dataStrings[7]);
-    dueDate.tm_mon = stoi(dataStrings[8]);
-    dueDate.tm_mday = stoi(dataStrings[9]);
+    dueDate.tm_year = stoi(dataStrings[8]);
+    dueDate.tm_mon = stoi(dataStrings[9]);
+    dueDate.tm_mday = stoi(dataStrings[10]);
 }
 
+//Format: TITLE_AUTHOR_PUBLISHER_YEARPUBLISHED_MONTHPUBLISHED_DAYPUBLISHED_ISAVAILABLE_CURRENTLYBORROWEDBY_DUEDATEYEAR_DUEDATEMONTH_DUEDATEDAY
 string Book::getWritableString() {
     string stringBuilder;
     stringBuilder += Customer::encryptSpaces(this->title);
@@ -85,7 +90,13 @@ string Book::getWritableString() {
 
     }
     stringBuilder += "_";
-    stringBuilder += "0";
+    stringBuilder += borrowedBy;
+    stringBuilder += "_";
+    stringBuilder += std::to_string(dueDate.tm_year);
+    stringBuilder += "_";
+    stringBuilder += std::to_string(dueDate.tm_mon);
+    stringBuilder += "_";
+    stringBuilder += std::to_string(dueDate.tm_mday);
     stringBuilder += "\n";
     return stringBuilder;
 }

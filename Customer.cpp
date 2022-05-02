@@ -69,7 +69,7 @@ std::string Customer::getWritableString() {
     stringBuilder += encryptSpaces(this->phoneNumber);
     stringBuilder += "_";
     stringBuilder +=
-            std::to_string(1900 + this->registerDate.tm_year) + "_" + std::to_string(this->registerDate.tm_mon) + "_" +
+            std::to_string(this->registerDate.tm_year+1900) + "_" + std::to_string(this->registerDate.tm_mon) + "_" +
             std::to_string(this->registerDate.tm_mday);
     stringBuilder += "\n";
     return stringBuilder;
@@ -114,7 +114,7 @@ Customer::Customer(string writtenString) {
         }
     }
     dataStrings.push_back(dataString);
-    int yearSince1900 = stoi(dataStrings[3]);
+    int yearSince1900 = stoi(dataStrings[3])-1900;
     int month = stoi(dataStrings[4]);
     int day = stoi(dataStrings[5]);
     tm targetDate = tm();

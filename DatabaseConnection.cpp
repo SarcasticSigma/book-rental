@@ -93,15 +93,14 @@ void DatabaseConnection::_saveCustomers() {
 }
 
 void DatabaseConnection::deleteCustomer(const string &customerName) {
+    int targetIndex;
     //TODO: Don't allow deletion unless no books are borrowed.
-    vector<Customer> saveCustomerList = this->customerList;
-    ofstream out(targetCustomerFile, ofstream::trunc);
-    for (Customer customer : saveCustomerList) {
-        if (customer.getName() != customerName) {
-            out << customer.getWritableString();
+    for(int i =0; i<customerList.size(); i++){
+        if(customerName == customerList[i].getName()){
+            targetIndex = i;
         }
     }
-    out.close();
+    customerList.erase(customerList.begin()+targetIndex);
     reloadData();
 }
 

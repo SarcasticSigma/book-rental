@@ -24,7 +24,7 @@ class Book {
 public:
     int bookId = 0;
     bool isAvailable;
-    string borrowedBy;
+    string borrowedBy = "NoOne";
     string title, author, publisher;
     tm releaseDate{};
 tm dueDate;
