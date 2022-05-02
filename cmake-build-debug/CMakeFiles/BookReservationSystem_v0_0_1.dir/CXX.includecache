@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/main.cpp
+iostream
+-
+string
+-
+iomanip
+-
+vector
+-
+ctime
+-
+chrono
+-
+ctime
+-
+
