@@ -81,8 +81,6 @@ std::string Customer::getWritableString() {
     }
     stringBuilder += "]";
     stringBuilder += "\n";
-
-
     return stringBuilder;
 }
 
@@ -136,12 +134,12 @@ Customer::Customer(const string &writtenString) {
     vector<int> bookIdVector = vector<int>();
     string bookIdString;
     for (char i : dataStrings[6]) {
-        if(dataStrings[6] == "[]"){
+        if (dataStrings[6] == "[]") {
             break;
         }
         if (i == ',') {
             bookIdVector.push_back(stoi(bookIdString));
-        } else if(i=='[' || i == ']'){
+        } else if (i == '[' || i == ']') {
             bookIdString += i;
         }
     }
@@ -153,5 +151,9 @@ Customer::Customer(const string &writtenString) {
     this->registerDate = targetDate;
     this->borrowedBookIds = bookIdVector;
 
+}
+
+vector<int> Customer::getBorrowedBookIds() {
+    return borrowedBookIds;
 }
 

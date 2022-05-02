@@ -85,6 +85,7 @@ public:
 
     double returnBook(Book book);
 
+    vector<int> getBorrowedBookIds();
 
     std::string getWritableString();
 

@@ -53,71 +53,81 @@ tm getCurrentTime() {
 
 int main() {
 
+    int mint = std::stoi("02");
+    int target = getTargetFunction();
 
 
+    DatabaseConnection db = DatabaseConnection();
+    string fName, lName, address, phoneNumber;
 
+    string title, author, publisher;
+    string year, month, day;
+//Add Customer
+    if (target == 1) {
+        cout
+                << "Please enter the follow information: "
+                   "First name, "
+                   "last name, "
+                   "address (No spaces), "
+                   "and phone number pressing enter after each entry." << endl;
+        cin >> fName >> lName >> address >> phoneNumber;
 
-
-
-
-
-
-    //    int target = getTargetFunction();
-DatabaseConnection db = DatabaseConnection();
-db.WriteCustomer(Customer("Robert California", "170 Burrell Road", "1678822999", getCurrentTime()));
-
-
-
-
-
-/*
-    switch (target) {
-
-        case 1:
-            string fName, lName, address, phoneNumber;
-
-            cout
-                    << "Please enter the follow information: "
-                       "First name, "
-                       "last name, "
-                       "address, "
-                       "and phone number pressing enter after each entry.";
-
-            DatabaseConnection db = DatabaseConnection();
-            db.WriteCustomer(Customer((fName + " " + lName), address, phoneNumber, getCurrentTime()));
-
-            break;
-        case 2:
-            db.DeleteCustomer
-            break;
-        case 3:
-            //Add book
-            break;
-        case 4:
-            //Delete book
-            break;
-        case 5:
-            //Rent a book out
-            break;
-        case 6:
-            //Return a book.
-            break;
-        case 7:
-            //List all customers
-            break;
-        case 8:
-            //List all books
-            break;
-        default:
-            throw std::invalid_argument("A function must be chosen!");
+        db.WriteCustomer(Customer((fName + " " + lName), address, phoneNumber, getCurrentTime()));
     }
-*/
+    //Delete Customer
+    else if (target == 2) {
+    }
+    //Add Book
+    else if (target == 3) {
+        cout
+                << "Please enter the follow information: "
+                   "Book Title (No spaces), "
+                   "Author, "
+                   "Publisher, "
+                   "Release year (number)"
+                   "Release month (number)"
+                   "Release day (number)" << endl;
+        cin.ignore(1, '\n');
+        std::getline(cin, title);
+        std::getline(cin, author);
+        std::getline(cin, publisher);
+        std::getline(cin, year);
+        std::getline(cin, month);
+        std::getline(cin, day);
+
+        db.WriteBook(Book(title, author, publisher, stoi(year), stoi(month), stoi(day)));
+    }
+    //Delete Book
+    else if (target == 4) {
+    }
+    //Rent Book
+    else if (target == 5) {
+
+    }
+    //Return Book
+    else if (target == 6) {
+
+    }
+    //List all customers
+    else if (target == 7) {
+
+    }
+    //List all books
+    else if (target == 8) {
+        vector<Book> bookList = db.getBookList();
+        for (Book b : bookList) {
+            cout << b.getOverviewData();
+        }
+    }
 }
+
+
 
 int getTargetFunction() {
     int userInput;
     cout
-            << "What would you like to do? \n1. Add customer\nDelete Customer\n3. Add book\n4.Delete Book\n5. Rent a book out\n6. Return a book\n7. List all customers\n8. List all books";
+            << "What would you like to do? \n1. Add customer\n2. Delete Customer\n3. Add book\n4.Delete Book\n5. Rent a book out\n6. Return a book\n7. List all customers\n8. List all books"
+            << endl;;
 
     while (true) {
         cin >> userInput;
@@ -125,8 +135,10 @@ int getTargetFunction() {
             break;
         } else {
             cout
-                    << "Please select an option from the following: \n1. Add customer\nDelete Customer\n3. Add book\n4.Delete Book\n5. Rent a book out\n6. Return a book\n7. List all customers\n8. List all books";
+                    << "Please select an option from the following: \n1. Add customer\n2. Delete Customer\n3. Add book\n4.Delete Book\n5. Rent a book out\n6. Return a book\n7. List all customers\n8. List all books"
+                    << endl;
         }
     }
+    cout << endl;
     return userInput;
 }

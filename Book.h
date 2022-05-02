@@ -24,16 +24,26 @@ class Book {
 private:
 
 
-    int bookId;
+    int bookId = 0;
     bool isAvailable;
     string title, author, publisher;
     tm releaseDate{};
 
+    static int _getNextId();
 
 public:
-    Book(int bookId, string title, string author, string publisher, tm releaseDate, bool isAvailable=true);
-int getBookId() const;
-    bool Equals(const Book& book) const ;
+    Book(string title, string author, string publisher, int releaseYear, int releaseMonth, int releaseDay,
+         bool isAvailable = true);
+
+    Book(const string &writtenString);
+
+    int getBookId() const;
+
+    bool Equals(const Book &book) const;
+
+    string getWritableString();
+
+    string getOverviewData();
 };
 
 
