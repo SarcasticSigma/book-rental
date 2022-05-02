@@ -19,20 +19,24 @@
 #include <fstream>
 
 DatabaseConnection::DatabaseConnection() {
-
-
+//Checks if the data path exists, if it doesn't - creates it.
     if (!IsPathExist("data")) {
         _mkdir("data");
     }
-
+    //If there's not a customer file, create a new one.
     if (!fileExists(targetCustomerFile)) {
         ofstream out(targetCustomerFile);
         out.close();
-    }
+    } else {
+        loadCustomers();
 
+    }
+    //If there's not a book file, create a new one.
     if (!fileExists(targetBookFile)) {
-        ofstream out(targetBookFile, ofstream::app);
+        ofstream out(targetBookFile);
         out.close();
+    } else {
+        loadBooks();
     }
 }
 
@@ -49,85 +53,108 @@ bool DatabaseConnection::fileExists(const string &name) {
     return (stat(name.c_str(), &buffer) == 0);
 }
 
-void DatabaseConnection::WriteCustomer(Customer customer) {
 
-    ofstream out(targetCustomerFile, ofstream::app);
-    out << customer.getWritableString();
-    out.close();
-}
-
-void DatabaseConnection::loadCustomers() {
-    string line;
-    vector<Customer> readCustomers = vector<Customer>();
-    ifstream infile("data/Customers.txt");
-    while (infile >> line) {
-        readCustomers.emplace_back(line);
-    }
-    this->customerList = readCustomers;
-}
-
-bool DatabaseConnection::deleteCustomer(const string &customerName) {
-    return false;
-}
-
-void DatabaseConnection::loadBooks() {
-
-    string line;
-    vector<Book> readBooks = vector<Book>();
-    ifstream infile("data/Customers.txt");
-    while (infile >> line) {
-        readBooks.emplace_back(line);
-    }
-    this->bookList = readBooks;
-}
-
-void DatabaseConnection::WriteBook(Book book) {
-    ofstream out(targetBookFile, ofstream::app);
-    out << book.getWritableString();
-    out.close();
-}
-
-vector<string> DatabaseConnection::getBorrowedBooks(const string &customerName) {
+vector<string> DatabaseConnection::getCustomersBorrowedBooks(const string &customerName) {
     vector<string> booksBorrowedBy;
-    for(Book b : bookList){
-        if(b.getBorrowedBy() == customerName){
+    for (Book b : bookList) {
+        if (b.getBorrowedBy() == customerName) {
             booksBorrowedBy.push_back(b.title);
         }
     }
     return booksBorrowedBy;
 }
 
-void DatabaseConnection::saveCustomers() {
-
+void DatabaseConnection::addCustomer(const Customer &customer) {
+    this->customerList.push_back(customer);
+    reloadData();
 }
 
-void DatabaseConnection::saveBooks() {
-
+void DatabaseConnection::addBook(const Book &book) {
+    this->bookList.push_back(book);
+    reloadData();
 }
 
+void DatabaseConnection::_saveBooks() {
+    vector<Book> saveBookList = this->bookList;
+    ofstream out(targetBookFile, ofstream::trunc);
+    for (Book book : saveBookList) {
+        out << book.getWritableString();
+    }
+    out.close();
+}
 
-//Based on https://stackoverflow.com/a/42114477/14348143
-void eraseFileLine(std::string path, std::string eraseLine) {
-    std::string line;
-    std::ifstream fin;
+void DatabaseConnection::_saveCustomers() {
+    vector<Customer> saveCustomerList = this->customerList;
+    ofstream out(targetCustomerFile, ofstream::trunc);
+    for (Customer customer : saveCustomerList) {
+        out << customer.getWritableString();
+    }
+    out.close();
+}
 
-    fin.open(path);
-    // contents of path must be copied to a temp file then
-    // renamed back to the path file
-    std::ofstream temp;
-    temp.open("data/temp.txt");
+void DatabaseConnection::deleteCustomer(const string &customerName) {
+    vector<Customer> saveCustomerList = this->customerList;
+    ofstream out(targetCustomerFile, ofstream::trunc);
+    for (Customer customer : saveCustomerList) {
+        if (customer.getName() != customerName) {
+            out << customer.getWritableString();
+        }
+    }
+    out.close();
+}
 
-    while (getline(fin, line)) {
-        // write all lines to temp other than the line marked for erasing
-        if (line != eraseLine)
-            temp << line << std::endl;
+void DatabaseConnection::reloadData() {
+    _saveBooks();
+    _saveCustomers();
+    customerList.clear();
+    bookList.clear();
+    string serializedCustomer, serializedBook;
+
+    ifstream myFile;
+    myFile.open(targetCustomerFile);
+    if (myFile.is_open()) {
+        while (myFile) {
+            std::getline(myFile, serializedCustomer);
+            customerList.emplace_back(serializedCustomer);
+        }
+    }
+    myFile.close();
+    myFile.open(targetBookFile);
+    if (myFile.is_open()) {
+        while (myFile) {
+            std::getline(myFile, serializedBook);
+            bookList.emplace_back(serializedBook);
+        }
+    }
+}
+
+void DatabaseConnection::loadBooks() {
+
+    bookList.clear();
+    string serializedBook;
+
+    ifstream myFile;
+
+    myFile.close();
+    myFile.open(targetBookFile);
+    if (myFile.is_open()) {
+        while (myFile) {
+            std::getline(myFile, serializedBook);
+            bookList.emplace_back(serializedBook);
+        }
     }
 
-    temp.close();
-    fin.close();
+}
 
-    // required conversion for remove and rename functions
-    const char *p = path.c_str();
-    remove(p);
-    rename("temp.txt", p);
+void DatabaseConnection::loadCustomers() {
+    customerList.clear();
+    ifstream myFile;
+    string serializedCustomer;
+    myFile.open(targetCustomerFile);
+    if (myFile.is_open()) {
+        while (myFile) {
+            std::getline(myFile, serializedCustomer);
+            customerList.emplace_back(serializedCustomer);
+        }
+    }
 }

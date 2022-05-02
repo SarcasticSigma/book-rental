@@ -44,7 +44,7 @@ private:
 public:
     Customer(string name, string address, string phoneNumber, tm registerDate);
 
-    Customer(const string& writtenString);
+    Customer(string writtenString);
 
     static string encryptSpaces(const string &decryptedString);
 

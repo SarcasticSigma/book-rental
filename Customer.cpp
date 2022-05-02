@@ -100,7 +100,7 @@ string Customer::decryptSpaces(const string &encryptedString) {
 
 }
 
-Customer::Customer(const string &writtenString) {
+Customer::Customer(string writtenString) {
     string customerLine = Customer::decryptSpaces(writtenString);
     vector<string> dataStrings = vector<string>();
     string dataString;

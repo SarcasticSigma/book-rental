@@ -66,8 +66,6 @@ Book::Book(const string &writtenString) {
 
 string Book::getWritableString() {
     string stringBuilder;
-    stringBuilder += std::to_string(bookId);
-    stringBuilder += "_";
     stringBuilder += Customer::encryptSpaces(this->title);
     stringBuilder += "_";
     stringBuilder += Customer::encryptSpaces(this->author);
@@ -83,7 +81,11 @@ string Book::getWritableString() {
         stringBuilder += "1";
     } else {
         stringBuilder += "0";
+        stringBuilder += "_";
+        stringBuilder += borrowedBy;
     }
+    stringBuilder += "_";
+    stringBuilder += "0";
     stringBuilder += "\n";
     return stringBuilder;
 }
@@ -102,7 +104,7 @@ string Book::getOverviewData() {
     bool isBorrowed = false;
     vector<string> books;
     for (Customer customer : myDBCon.customerList) {
-        books = db.getBorrowedBooks(customer.getName());
+        books = db.getCustomersBorrowedBooks(customer.getName());
     }
     for(string str : books){
 

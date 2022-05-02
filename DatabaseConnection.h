@@ -30,22 +30,22 @@ public:
     vector<Customer> customerList;
     vector<Book> bookList;
     DatabaseConnection();
+    void addCustomer(const Customer& customer);
+    void addBook(const Book& book);
+    void _saveBooks();
+    void _saveCustomers();
     static bool IsPathExist(const std::string &s);
     inline bool fileExists (const std::string& name);
-    void WriteCustomer(Customer customer);
-    void WriteBook(Book book);
-    void loadCustomers();
-    void loadBooks();
-    void saveCustomers();
-    void saveBooks();
-
-    bool deleteCustomer(const string& customerName);
+void loadBooks();
+void loadCustomers();
+    void reloadData();
     bool deleteBook();
 
 
 
-vector<string> getBorrowedBooks(const string &customerName);
+vector<string> getCustomersBorrowedBooks(const string &customerName);
 
+    void deleteCustomer(const string& customerName);
 };
 
 

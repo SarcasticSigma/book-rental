@@ -49,35 +49,28 @@ tm getCurrentTime() {
 }
 
 int main() {
-
-    int mint = std::stoi("02");
     int target = getTargetFunction();
-
-
     DatabaseConnection db = DatabaseConnection();
-
-
-    string title, author, publisher;
-    string year, month, day;
-//Add Customer
     if (target == 1) {
         cout
                 << "Please enter the follow information: "
                    "First name, "
                    "last name, "
-                   "address (No spaces), "
+                   "address, "
                    "and phone number pressing enter after each entry." << endl;
         string name, address, phoneNumber;
         std::getline(cin, name);
         std::getline(cin,address);
         std::getline(cin, phoneNumber);
-        db.WriteCustomer(Customer(name, address, phoneNumber, getCurrentTime()));
+        db.addCustomer(Customer(name, address, phoneNumber, getCurrentTime()));
     }
     //Delete Customer
     else if (target == 2) {
     }
     //Add Book
     else if (target == 3) {
+        string title, author, publisher;
+        string year, month, day;
         cout
                 << "Please enter the follow information: "
                    "Book Title (No spaces), "
@@ -94,7 +87,7 @@ int main() {
         std::getline(cin, month);
         std::getline(cin, day);
 
-        db.WriteBook(Book(title, author, publisher, stoi(year), stoi(month), stoi(day)));
+        db.addBook(Book(title, author, publisher, stoi(year), stoi(month), stoi(day)));
     }
     //Delete Book
     else if (target == 4) {
@@ -113,7 +106,7 @@ int main() {
     }
     //List all books
     else if (target == 8) {
-        vector<Book> bookList = db.bookList();
+        vector<Book> bookList = db.bookList;
         for (Book b : bookList) {
             cout << b.getOverviewData();
         }
