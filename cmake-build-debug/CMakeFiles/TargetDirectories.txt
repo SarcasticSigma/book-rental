@@ -1,0 +1,3 @@
+C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/cmake-build-debug/CMakeFiles/BookReservationSystem_v0_0_1.dir
+C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/coldc/CLionProjects/BookReservationSystem-v0.0.1/cmake-build-debug/CMakeFiles/rebuild_cache.dir

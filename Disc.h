@@ -1,0 +1,14 @@
+//
+// Created by coldc on 5/1/2022.
+//
+
+#ifndef BOOKRESERVATIONSYSTEM_V0_0_1_DISC_H
+#define BOOKRESERVATIONSYSTEM_V0_0_1_DISC_H
+
+
+class Disc {
+
+};
+
+
+#endif //BOOKRESERVATIONSYSTEM_V0_0_1_DISC_H
