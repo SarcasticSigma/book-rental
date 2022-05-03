@@ -51,11 +51,11 @@ tm getCurrentTime() {
 int main() {
     int target = getTargetFunction();
     DatabaseConnection db = DatabaseConnection();
+    //Add Customer
     if (target == 1) {
         cout
                 << "Please enter the follow information pressing enter after each entry: "
-                   "First name, "
-                   "last name, "
+                   "Name, "
                    "address, "
                    "and phone number." << endl;
         cin.ignore(1, '\n');
@@ -108,35 +108,42 @@ int main() {
 
         db.addBook(Book(title, author, publisher, stoi(year)-1900, stoi(month), stoi(day)));
     }
-
     //Rent Book
     else if (target == 4) {
-        for(Book book : db.bookList){
+        do {
             string targetBookName, targetCustomerName;
             cout << "Please enter the name of the customer borrowing the book:";
-            cin >> targetCustomerName;
+            cin.ignore(1, '\n');
+            std::getline(cin, targetCustomerName);
             bool flagCustomerExists = false;
-            for(Customer customer : db.customerList){
-                if (customer.getName() == targetCustomerName){
+            for (Customer customer : db.customerList) {
+                if (customer.getName() == targetCustomerName) {
                     flagCustomerExists = true;
                 }
             }
-            if(!flagCustomerExists){
+            if (!flagCustomerExists) {
                 cout << "That customer doesn't exists!";
                 //TODO: Handle user
                 break;
             }
             cout << "Please enter the name of the book you want to borrow (ensure it's available)";
-            cin >> targetBookName;
-            if(book.title == targetBookName){
-                if(book.isAvailable){
-                    book.borrowBook(targetCustomerName);
-                }else{
-                    cout << "That book's not available.";
+
+            std::getline(cin, targetBookName);
+
+            for (Book book : db.bookList) {
+
+                if (book.title == targetBookName) {
+                    if (book.isAvailable) {
+                        book.borrowBook(targetCustomerName);
+
+
+                        cout << "Success!";
+                    } else {
+                        cout << "That book's not available.";
+                    }
                 }
             }
-        }
-        cout<<"Please try again later";
+        } while (false);
 
     }
     //Return Book

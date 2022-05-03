@@ -17,6 +17,7 @@
 #include <sys/stat.h>
 #include <string>
 #include <fstream>
+#include <chrono>
 
 DatabaseConnection::DatabaseConnection() {
 //Checks if the data path exists, if it doesn't - creates it.
@@ -166,4 +167,20 @@ void DatabaseConnection::loadCustomers() {
             }
         }
     }
+}
+
+void DatabaseConnection::rentBook(string bookName, string customerName) {
+    cout << "Borrowing -";
+    std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
+    std::chrono::system_clock::time_point newTimePoint = tp + (7*24h);
+    time_t tt = std::chrono::system_clock::to_time_t(newTimePoint);
+    tm local_tm = *localtime(&tt);
+
+
+
+
+    this->dueDate=local_tm;
+    this->isAvailable = false;
+    this->borrowedBy = std::move(customerName);
+
 }

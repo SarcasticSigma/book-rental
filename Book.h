@@ -22,21 +22,19 @@ using std::istream;
 
 class Book {
 public:
-    int bookId = 0;
     bool isAvailable;
     string borrowedBy = "NoOne";
     string title, author, publisher;
     tm releaseDate{};
 tm dueDate;
 
-    Book(string title, string author, string publisher, int releaseYear, int releaseMonth, int releaseDay,
-         bool isAvailable = true);
+    Book(string title, string author, string publisher, int releaseYear, int releaseMonth, int releaseDay);
 
     Book(const string &writtenString);
 
+    void updateBook();
 
-    void borrowBook(string customerName);
-double returnBook(string customerName);
+    double returnBook(string customerName);
 
     string getBorrowedBy();
 

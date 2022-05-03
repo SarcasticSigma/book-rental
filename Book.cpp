@@ -8,8 +8,7 @@
 #include <utility>
 using namespace std::literals;
 
-Book::Book(string title, string author, string publisher, int releaseYear, int releaseMonth, int releaseDay,
-           bool isAvailable) {
+Book::Book(string title, string author, string publisher, int releaseYear, int releaseMonth, int releaseDay) {
     this->author = std::move(author);
     this->title = std::move(title);
     this->publisher = std::move(publisher);
@@ -18,7 +17,7 @@ Book::Book(string title, string author, string publisher, int releaseYear, int r
     constructedReleaseDate.tm_mon = releaseMonth;
     constructedReleaseDate.tm_mday = releaseDay;
     this->releaseDate = constructedReleaseDate;
-    this->isAvailable = isAvailable;
+    this->isAvailable = true;
     this->dueDate = tm();
 }
 
@@ -40,7 +39,7 @@ Book::Book(const string &writtenString) {
     this->author = dataStrings[1];
     this->publisher = dataStrings[2];
     //TODO Get proper offset
-    int yearSince1900 = stoi(dataStrings[3]);
+    int yearSince1900 = stoi(dataStrings[3])-1900;
     int month = stoi(dataStrings[4]);
     int day = stoi(dataStrings[5]);
     tm targetDate = tm();
@@ -56,7 +55,7 @@ Book::Book(const string &writtenString) {
     this->borrowedBy = dataStrings[7];
 
     this->dueDate = tm();
-    dueDate.tm_year = stoi(dataStrings[8]);
+    dueDate.tm_year = stoi(dataStrings[8])-1900;
     dueDate.tm_mon = stoi(dataStrings[9]);
     dueDate.tm_mday = stoi(dataStrings[10]);
 }
@@ -77,17 +76,18 @@ string Book::getWritableString() {
     stringBuilder += "_";
     if (isAvailable) {
         stringBuilder += "1";
-    } else {
+    } else  {
         stringBuilder += "0";
         stringBuilder += "_";
         stringBuilder += borrowedBy;
         stringBuilder += "_";
-        stringBuilder += dueDate.tm_year;
+        stringBuilder += std::to_string(dueDate.tm_year+1900);
         stringBuilder += "_";
-        stringBuilder += dueDate.tm_mon;
+        stringBuilder += std::to_string(dueDate.tm_mon);
         stringBuilder += "_";
-        stringBuilder += dueDate.tm_mday;
-
+        stringBuilder += std::to_string(dueDate.tm_mday);
+        stringBuilder += "\n";
+        return stringBuilder;
     }
     stringBuilder += "_";
     stringBuilder += borrowedBy;
@@ -118,17 +118,6 @@ string Book::getOverviewData() {
     builderString += isAvailable ? "Yes" : "No";
     builderString += "\n";
     return builderString;
-}
-
-void Book::borrowBook(string customerName) {
-    std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
-    std::chrono::system_clock::time_point newTimePoint = tp + (7*24h);
-    time_t tt = std::chrono::system_clock::to_time_t(newTimePoint);
-    tm local_tm = *localtime(&tt);
-    this->dueDate=local_tm;
-    this->isAvailable = false;
-    this->borrowedBy = std::move(customerName);
-
 }
 
 string Book::getBorrowedBy() {

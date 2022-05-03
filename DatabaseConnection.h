@@ -52,6 +52,8 @@ public:
     vector<Book> getCustomersBorrowedBooks(const string &customerName);
 
     void deleteCustomer(const string &customerName);
+
+   void rentBook(string bookName, string customerName);
 };
 
 
