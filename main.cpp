@@ -54,6 +54,7 @@ tm getCurrentTime() {
 }
 
 int main() {
+
     while (true) {
         int target = getTargetFunction();
         DatabaseConnection db = DatabaseConnection();
@@ -89,6 +90,7 @@ int main() {
                     break;
                 }
                 db.deleteCustomer(customerName);
+                cout << "Successfully deleted " << customerName;
             } while (false);
         }
             //Add Book
@@ -128,18 +130,23 @@ int main() {
             }
             if (flagCustomerExists) {
                 bool flagBookExists = false;
-                cout << "Please enter the name of the book you want to borrow (ensure it's available)";
-
+                cout << "Please enter the name of the book you want to borrow:";
                 std::getline(cin, targetBookName);
-
+                bool flagAvailable = false;
                 for (Book bk : db.bookList) {
                     if (bk.title == targetBookName) {
                         flagBookExists = true;
+                        if(bk.isAvailable){
+                            flagAvailable = true;
+                        }
                     }
                 }
-                if (flagBookExists) {
+                if (flagBookExists && flagAvailable) {
                     db.rentBook(targetBookName, targetCustomerName);
-                } else { cout << "That book doesn't exists!"; }
+                } else if(!flagBookExists){ cout << "That book doesn't exists!"; }
+                else if(!flagAvailable){
+                    cout << "That book is not available!";
+                }
             } else {
                 cout << "That customer doesn't exists!";
             }
@@ -184,7 +191,7 @@ int main() {
         }
             //List all customers
         else if (target == 6) {
-            cout << "Customer Name               Currently Borrowed Books               Due Date\n";
+            cout << "Customer Name" + string(37, ' ') + "Currently Borrowed Books" +  string(27, ' ') + "Due Date\n";
             vector<Customer> customerList = db.customerList;
             for (Customer c: customerList) {
                 cout << c.getOverviewData();
@@ -193,7 +200,7 @@ int main() {
             //List all books
         else if (target == 7) {
             vector<Book> bookList = db.bookList;
-            cout << "Book Title              Borrowed By               Is available?\n";
+            cout << "Book Title" + string(40, ' ') + "Borrowed By" +  string(39, ' ') + "Is available?\n";
             for (Book b: bookList) {
                 cout << b.getOverviewData();
 
@@ -206,7 +213,7 @@ int main() {
 int getTargetFunction() {
     int userInput;
     cout
-            << "What would you like to do? \n1. Add customer\n2. Delete Customer\n3. Add book\n4. Rent a book out\n5. Return a book\n6. List all customers\n7. List all books"
+            << "\n\nWhat would you like to do? \n1. Add customer\n2. Delete Customer\n3. Add book\n4. Rent a book out\n5. Return a book\n6. List all customers\n7. List all books"
             << endl;;
 
     while (true) {
@@ -215,7 +222,7 @@ int getTargetFunction() {
             break;
         } else {
             cout
-                    << "Please select an option from the following: \n1. Add customer\n2. Delete Customer\n3. Add book\n4.Delete Book\n5. Rent a book out\n6. Return a book\n7. List all customers\n8. List all books"
+            << "Please select an option from the following: \n1. Add customer\n2. Delete Customer\n3. Add book\n4. Rent a book out\n5. Return a book\n6. List all customers\n7. List all books"
                     << endl;
         }
     }

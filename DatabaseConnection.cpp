@@ -195,8 +195,14 @@ void DatabaseConnection::rentBook(string bookName, string customerName) {
     tm local_tm = *localtime(&tt);
     updatedBook.dueDate = local_tm;
     updatedBook.isAvailable = false;
+
     bookList.erase(bookList.begin() + targetIndex);
-    bookList.insert(bookList.begin() + targetIndex - 1, updatedBook);
+
+    if (targetIndex == 0) {
+        bookList.insert(bookList.begin() + targetIndex, updatedBook);
+    } else {
+        bookList.insert(bookList.begin() + targetIndex - 1, updatedBook);
+    }
     reloadData();
 
 }
@@ -216,16 +222,34 @@ void DatabaseConnection::returnBook(string targetBookName, string targetCustomer
     std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
     time_t tt = std::chrono::system_clock::to_time_t(tp);
     tm currentTime = *localtime(&tt);
-    double owedFees;
+
+    double owedFees = 0.0;
     int years, months, days;
     Book finalCopy = bookList[targetIndex];
-    years = finalCopy.dueDate.tm_year - currentTime.tm_year;
-    months = finalCopy.dueDate.tm_mon - currentTime.tm_mon;
-    days = finalCopy.dueDate.tm_mday - currentTime.tm_mday;
-    double totalDays = years * 365.25 * months * 1 / 12 * days;
-    if (totalDays > 7) {
-        owedFees = 3 * (totalDays - 7);
-    } else if (totalDays <= 7) {
+    const int monthDays[12] = {31, 28, 31, 30, 31, 30,
+                               31, 31, 30, 31, 30, 31};
+    int dueDateMonth, dueDateDay, dueDateYear;
+
+    dueDateDay = finalCopy.dueDate.tm_mday;
+
+    dueDateMonth = finalCopy.dueDate.tm_mon;
+
+    dueDateYear = finalCopy.dueDate.tm_year;
+
+    int totalLateDaysElapsed = 0;
+    int monthdaysElapsed = currentTime.tm_mday - dueDateDay;
+    int monthsElapsed = currentTime.tm_mon - dueDateMonth;
+    int yearsElapsed = (currentTime.tm_year + 1900) - dueDateYear;
+    totalLateDaysElapsed += monthdaysElapsed;
+    for (int i = dueDateMonth; i < currentTime.tm_mon; i++) {
+        totalLateDaysElapsed += monthDays[i];
+
+    }
+    totalLateDaysElapsed += yearsElapsed * 365;
+
+    if (totalLateDaysElapsed > 1) {
+        owedFees = 3 * (totalLateDaysElapsed);
+    } else if (totalLateDaysElapsed <= 0) {
         owedFees = 0;
     }
     Book updatedBook = bookList[targetIndex];
@@ -236,13 +260,18 @@ void DatabaseConnection::returnBook(string targetBookName, string targetCustomer
     updatedBook.dueDate.tm_mday = 0;
     updatedBook.isAvailable = true;
     bookList.erase(bookList.begin() + targetIndex);
-    if(targetIndex == 0){
+    if (targetIndex == 0) {
         bookList.insert(bookList.begin() + targetIndex, updatedBook);
-    }else{
+    } else {
         bookList.insert(bookList.begin() + targetIndex - 1, updatedBook);
     }
     reloadData();
-    cout << "You owe $" << owedFees << " in late charges due to being " << totalDays <<" days late returning the book " << targetBookName;
+    if(totalLateDaysElapsed >= 1){
+    cout << "You owe $" << owedFees << " in late charges due to being " << totalLateDaysElapsed
+         << " days late returning the book " << targetBookName << "\n"<<endl;
+    }else{
+        cout << "You owe no late charges since you returned "<< targetBookName<< " on time."<< endl;
+    }
 }
 
 void DatabaseConnection::getBook(string bookName) {
@@ -251,8 +280,7 @@ void DatabaseConnection::getBook(string bookName) {
             return;
         }
     }
-    return;
-}
+    }
 
 void DatabaseConnection::getCustomer(string customerName) {
     for (Customer cust : customerList) {

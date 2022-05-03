@@ -102,11 +102,12 @@ string Book::getWritableString() {
 }
 
 string Book::getOverviewData() {
+    int SIZE_GAP = 50;
     string builderString;
     DatabaseConnection db = DatabaseConnection();
-    builderString += title + "             ";
-    builderString += this-> borrowedBy + "             ";
-    builderString += isAvailable ? "             Yes" : "             No";
+    builderString += title + string(SIZE_GAP-(title.length()), ' ');
+    builderString += this-> borrowedBy + string(SIZE_GAP-(borrowedBy.length()), ' ');
+    builderString += isAvailable ? "Yes" : "No";
     builderString += "\n";
     return builderString;
 }
