@@ -21,8 +21,11 @@
 #include <sys/stat.h>
 // for windows mkdir
 #ifdef _WIN32
+
 #include <direct.h>
+
 #endif
+
 #include <sys/stat.h>
 #include <sys/stat.h>
 #include <string>
@@ -61,32 +64,32 @@ int main() {
         cin.ignore(1, '\n');
         string name, address, phoneNumber;
         std::getline(cin, name);
-        std::getline(cin,address);
+        std::getline(cin, address);
         std::getline(cin, phoneNumber);
         db.addCustomer(Customer(name, address, phoneNumber, getCurrentTime()));
     }
-    //Delete Customer
+        //Delete Customer
     else if (target == 2) {
-        do{
+        do {
             string customerName;
             cout << "What's the name of the customer you would like to delete?";
             cin.ignore(1, '\n');
-            std::getline(cin,  customerName);
+            std::getline(cin, customerName);
             bool flagCustomerExists = false;
-            for(Customer customer : db.customerList){
-                if (customer.getName() == customerName){
+            for (Customer customer : db.customerList) {
+                if (customer.getName() == customerName) {
                     flagCustomerExists = true;
                 }
             }
-            if(!flagCustomerExists){
+            if (!flagCustomerExists) {
                 cout << "That customer doesn't exists!";
                 //TODO: Handle user
                 break;
             }
             db.deleteCustomer(customerName);
-        }while(false);
+        } while (false);
     }
-    //Add Book
+        //Add Book
     else if (target == 3) {
         string title, author, publisher;
         string year, month, day;
@@ -106,66 +109,57 @@ int main() {
         std::getline(cin, month);
         std::getline(cin, day);
 
-        db.addBook(Book(title, author, publisher, stoi(year)-1900, stoi(month), stoi(day)));
+        db.addBook(Book(title, author, publisher, stoi(year) - 1900, stoi(month), stoi(day)));
     }
-    //Rent Book
+        //Rent Book
     else if (target == 4) {
-        do {
-            string targetBookName, targetCustomerName;
-            cout << "Please enter the name of the customer borrowing the book:";
-            cin.ignore(1, '\n');
-            std::getline(cin, targetCustomerName);
-            bool flagCustomerExists = false;
-            for (Customer customer : db.customerList) {
-                if (customer.getName() == targetCustomerName) {
-                    flagCustomerExists = true;
-                }
+
+        string targetBookName, targetCustomerName;
+        cout << "Please enter the name of the customer borrowing the book:";
+        cin.ignore(1, '\n');
+        std::getline(cin, targetCustomerName);
+        bool flagCustomerExists = false;
+        for (Customer customer : db.customerList) {
+            if (customer.getName() == targetCustomerName) {
+                flagCustomerExists = true;
             }
-            if (!flagCustomerExists) {
-                cout << "That customer doesn't exists!";
-                //TODO: Handle user
-                break;
-            }
-            cout << "Please enter the name of the book you want to borrow (ensure it's available)";
+        }
+        if (!flagCustomerExists) {
+            cout << "That customer doesn't exists!";
+            //TODO: Handle user
+        }
+        cout << "Please enter the name of the book you want to borrow (ensure it's available)";
 
-            std::getline(cin, targetBookName);
+        std::getline(cin, targetBookName);
 
-            for (Book book : db.bookList) {
+        db.rentBook(targetBookName, targetCustomerName);
 
-                if (book.title == targetBookName) {
-                    if (book.isAvailable) {
-                        book.borrowBook(targetCustomerName);
-
-
-                        cout << "Success!";
-                    } else {
-                        cout << "That book's not available.";
-                    }
-                }
-            }
-        } while (false);
 
     }
-    //Return Book
+
+
+//Return Book
     else if (target == 5) {
 
     }
-    //List all customers
+//List all customers
     else if (target == 6) {
-vector<Customer> customerList = db.customerList;
-for(Customer c : customerList){
-    cout << c.getOverviewData();
-}
+        cout << "Customer Name                            Currently Borrowed Books\n";
+        vector<Customer> customerList = db.customerList;
+        for (Customer c: customerList) {
+            cout << c.getOverviewData();
+        }
     }
-    //List all books
+//List all books
     else if (target == 7) {
         vector<Book> bookList = db.bookList;
-        for (Book b : bookList) {
+        cout << "Book Title              Borrowed By               Is available?\n";
+        for (Book b: bookList) {
             cout << b.getOverviewData();
+
         }
     }
 }
-
 
 
 int getTargetFunction() {

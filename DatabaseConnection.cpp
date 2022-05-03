@@ -18,7 +18,7 @@
 #include <string>
 #include <fstream>
 #include <chrono>
-
+using namespace std::literals;
 DatabaseConnection::DatabaseConnection() {
 //Checks if the data path exists, if it doesn't - creates it.
     if (!IsPathExist("data")) {
@@ -170,17 +170,22 @@ void DatabaseConnection::loadCustomers() {
 }
 
 void DatabaseConnection::rentBook(string bookName, string customerName) {
-    cout << "Borrowing -";
-    std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
-    std::chrono::system_clock::time_point newTimePoint = tp + (7*24h);
-    time_t tt = std::chrono::system_clock::to_time_t(newTimePoint);
-    tm local_tm = *localtime(&tt);
-
-
-
-
-    this->dueDate=local_tm;
-    this->isAvailable = false;
-    this->borrowedBy = std::move(customerName);
-
+/*
+    for(Book b : bookList){
+        if(b.title == bookName){
+//TODO Validate Rules
+            if (true) {
+                std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
+                std::chrono::system_clock::time_point newTimePoint = tp + (7 * 24h);
+                time_t tt = std::chrono::system_clock::to_time_t(newTimePoint);
+                tm local_tm = *localtime(&tt);
+                b.dueDate = local_tm;
+                b.isAvailable = false;
+                b.borrowedBy = customerName;
+                Book newBook = b;
+            }
+        }
+    }
+//    bookList.at() = newBook;
+  //  this->reloadData();*/
 }

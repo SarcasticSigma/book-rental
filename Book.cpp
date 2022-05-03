@@ -104,18 +104,9 @@ string Book::getWritableString() {
 string Book::getOverviewData() {
     string builderString;
     DatabaseConnection db = DatabaseConnection();
-    builderString += title;
-
-    DatabaseConnection myDBCon = DatabaseConnection();
-    vector<Book> books;
-    for (Customer customer : myDBCon.customerList) {
-        books = db.getCustomersBorrowedBooks(customer.getName());
-    }
-    for(Book book : books){
-
-    }
-    builderString += " Available? ";
-    builderString += isAvailable ? "Yes" : "No";
+    builderString += title + "             ";
+    builderString += this-> borrowedBy + "             ";
+    builderString += isAvailable ? "             Yes" : "             No";
     builderString += "\n";
     return builderString;
 }

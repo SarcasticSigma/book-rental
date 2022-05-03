@@ -134,23 +134,26 @@ string Customer::getOverviewData() {
     DatabaseConnection db = DatabaseConnection();
 
 
-    for (const Customer &c : db.customerList) {
-        vector<Book> borrowedList = db.getCustomersBorrowedBooks(c.name);
+    vector<Book> borrowedList = db.getCustomersBorrowedBooks(this->name);
         if (!borrowedList.empty()) {
             for (const Book &borrowed : borrowedList) {
-                builderString += c.name + " ";
+                builderString += this->name + " ";
                 builderString += borrowed.title + " ";
-                //TODO: Implement Due dates in Book
+
                 builderString += std::to_string(borrowed.dueDate.tm_mday);
                 builderString += '/';
                 builderString += std::to_string(borrowed.dueDate.tm_mon);
                 builderString += '/';
                 builderString += std::to_string(borrowed.dueDate.tm_year);
             }
+        }else{
+            builderString += this->name + "                         ";
+            builderString += "-\n";
+
         }
 
 
-    }
 
-    return std::string();
+
+    return builderString;
 }
