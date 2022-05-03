@@ -69,7 +69,7 @@ std::string Customer::getWritableString() {
     stringBuilder += encryptSpaces(this->phoneNumber);
     stringBuilder += "_";
     stringBuilder +=
-            std::to_string(this->registerDate.tm_year+1900) + "_" + std::to_string(this->registerDate.tm_mon) + "_" +
+            std::to_string(this->registerDate.tm_year + 1900) + "_" + std::to_string(this->registerDate.tm_mon) + "_" +
             std::to_string(this->registerDate.tm_mday);
     stringBuilder += "\n";
     return stringBuilder;
@@ -114,7 +114,7 @@ Customer::Customer(string writtenString) {
         }
     }
     dataStrings.push_back(dataString);
-    int yearSince1900 = stoi(dataStrings[3])-1900;
+    int yearSince1900 = stoi(dataStrings[3]) - 1900;
     int month = stoi(dataStrings[4]);
     int day = stoi(dataStrings[5]);
     tm targetDate = tm();
@@ -135,24 +135,22 @@ string Customer::getOverviewData() {
 
 
     vector<Book> borrowedList = db.getCustomersBorrowedBooks(this->name);
-        if (!borrowedList.empty()) {
-            for (const Book &borrowed : borrowedList) {
-                builderString += this->name + " ";
-                builderString += borrowed.title + " ";
-
-                builderString += std::to_string(borrowed.dueDate.tm_mday);
-                builderString += '/';
-                builderString += std::to_string(borrowed.dueDate.tm_mon);
-                builderString += '/';
-                builderString += std::to_string(borrowed.dueDate.tm_year);
-            }
-        }else{
-            builderString += this->name + "                         ";
-            builderString += "-\n";
-
+    if (!borrowedList.empty()) {
+        for (const Book &borrowed : borrowedList) {
+            builderString += this->name + "                ";
+            builderString += borrowed.title + "                        ";
+            builderString += std::to_string(borrowed.dueDate.tm_mon+1);
+            builderString += '/';
+            builderString += std::to_string(borrowed.dueDate.tm_mday);
+            builderString += '/';
+            builderString += std::to_string(borrowed.dueDate.tm_year+1900);
+            builderString += "\n";
         }
-
-
+    } else {
+        builderString += this->name + "                   ";
+        builderString += "-                               ";
+        builderString += "-\n";
+    }
 
 
     return builderString;

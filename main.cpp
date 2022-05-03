@@ -124,16 +124,26 @@ int main() {
                 flagCustomerExists = true;
             }
         }
-        if (!flagCustomerExists) {
-            cout << "That customer doesn't exists!";
+        if (flagCustomerExists) {
+
+
             //TODO: Handle user
+            bool flagBookExists = false;
+            cout << "Please enter the name of the book you want to borrow (ensure it's available)";
+
+            std::getline(cin, targetBookName);
+
+            for(Book bk : db.bookList){
+                if(bk.title == targetBookName){
+                    flagBookExists =true;
+                }
+            }
+            if(flagBookExists){
+                db.rentBook(targetBookName, targetCustomerName);}
+            else{cout << "That book doesn't exists!";}
+        } else {
+            cout << "That customer doesn't exists!";
         }
-        cout << "Please enter the name of the book you want to borrow (ensure it's available)";
-
-        std::getline(cin, targetBookName);
-
-        db.rentBook(targetBookName, targetCustomerName);
-
 
     }
 
@@ -144,7 +154,7 @@ int main() {
     }
 //List all customers
     else if (target == 6) {
-        cout << "Customer Name                            Currently Borrowed Books\n";
+        cout << "Customer Name               Currently Borrowed Books               Due Date\n";
         vector<Customer> customerList = db.customerList;
         for (Customer c: customerList) {
             cout << c.getOverviewData();

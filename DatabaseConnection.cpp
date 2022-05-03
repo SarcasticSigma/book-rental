@@ -18,7 +18,9 @@
 #include <string>
 #include <fstream>
 #include <chrono>
+
 using namespace std::literals;
+
 DatabaseConnection::DatabaseConnection() {
 //Checks if the data path exists, if it doesn't - creates it.
     if (!IsPathExist("data")) {
@@ -96,12 +98,12 @@ void DatabaseConnection::_saveCustomers() {
 void DatabaseConnection::deleteCustomer(const string &customerName) {
     int targetIndex;
     //TODO: Don't allow deletion unless no books are borrowed.
-    for(int i =0; i<customerList.size(); i++){
-        if(customerName == customerList[i].getName()){
+    for (int i = 0; i < customerList.size(); i++) {
+        if (customerName == customerList[i].getName()) {
             targetIndex = i;
         }
     }
-    customerList.erase(customerList.begin()+targetIndex);
+    customerList.erase(customerList.begin() + targetIndex);
     reloadData();
 }
 
@@ -170,22 +172,23 @@ void DatabaseConnection::loadCustomers() {
 }
 
 void DatabaseConnection::rentBook(string bookName, string customerName) {
-/*
-    for(Book b : bookList){
-        if(b.title == bookName){
-//TODO Validate Rules
-            if (true) {
-                std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
-                std::chrono::system_clock::time_point newTimePoint = tp + (7 * 24h);
-                time_t tt = std::chrono::system_clock::to_time_t(newTimePoint);
-                tm local_tm = *localtime(&tt);
-                b.dueDate = local_tm;
-                b.isAvailable = false;
-                b.borrowedBy = customerName;
-                Book newBook = b;
-            }
+    int targetIndex = -1;
+    for (int i = 0; i < bookList.size(); i++) {
+        if (bookName == bookList[i].title) {
+            targetIndex = i;
         }
     }
-//    bookList.at() = newBook;
-  //  this->reloadData();*/
+
+    Book updatedBook = bookList[targetIndex];
+    updatedBook.borrowedBy = customerName;
+    std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
+    std::chrono::system_clock::time_point newTimePoint = tp + (7 * 24h);
+    time_t tt = std::chrono::system_clock::to_time_t(newTimePoint);
+    tm local_tm = *localtime(&tt);
+    updatedBook.dueDate = local_tm;
+    updatedBook.isAvailable = false;
+    bookList.erase(bookList.begin() + targetIndex);
+    bookList.insert(bookList.begin() + targetIndex - 1, updatedBook);
+    reloadData();
+
 }
