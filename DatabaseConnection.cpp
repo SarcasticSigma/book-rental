@@ -266,12 +266,20 @@ void DatabaseConnection::returnBook(string targetBookName, string targetCustomer
         bookList.insert(bookList.begin() + targetIndex - 1, updatedBook);
     }
     reloadData();
-    if(totalLateDaysElapsed >= 1){
-    cout << "You owe $" << owedFees << " in late charges due to being " << totalLateDaysElapsed
-         << " days late returning the book " << targetBookName << "\n"<<endl;
-    }else{
-        cout << "You owe no late charges since you returned "<< targetBookName<< " on time."<< endl;
-    }
+
+
+    //Detail Report:
+    cout<< "Customer Name: " << targetCustomerName << '\n';
+    cout << "Book Title" + string(40, ' ') + "Number Of Days Borrowed" +  string(27, ' ') + "Days Overdue" + string(32, ' ') + "Late Fee" << endl;
+    int SIZE_GAP = 50;
+    string builderString;
+    builderString += targetBookName + string(SIZE_GAP-(targetBookName.length()), ' ');
+    builderString += std::to_string(totalLateDaysElapsed+7) + string( SIZE_GAP - std::to_string(totalLateDaysElapsed+7).length(), ' ');
+    string overdueDays = totalLateDaysElapsed >= 0 ? std::to_string(totalLateDaysElapsed) : "0";
+    builderString += totalLateDaysElapsed>= 0 ? std::to_string(totalLateDaysElapsed) : "0";
+    builderString += string( (SIZE_GAP-std::to_string(SIZE_GAP - totalLateDaysElapsed+7).length())-5, ' ');
+    builderString += "$"+std::to_string(owedFees);
+    cout << builderString;
 }
 
 void DatabaseConnection::getBook(string bookName) {
