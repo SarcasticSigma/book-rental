@@ -55,7 +55,7 @@ Book::Book(const string &writtenString) {
     this->borrowedBy = dataStrings[7];
 
     this->dueDate = tm();
-    dueDate.tm_year = stoi(dataStrings[8])-1900;
+    dueDate.tm_year = stoi(dataStrings[8]);
     dueDate.tm_mon = stoi(dataStrings[9]);
     dueDate.tm_mday = stoi(dataStrings[10]);
 }
@@ -113,11 +113,6 @@ string Book::getOverviewData() {
 
 string Book::getBorrowedBy() {
     return this->borrowedBy;
-}
-
-double Book::returnBook(string customerName) {
-    //TODO: return the cost of returning the book.
-    return 0;
 }
 
 

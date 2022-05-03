@@ -53,7 +53,12 @@ public:
 
     void deleteCustomer(const string &customerName);
 
+    void getBook(string bookName);
+    void getCustomer(string customerName);
+
    void rentBook(string bookName, string customerName);
+
+    void returnBook(string basicString, string basicString1);
 };
 
 

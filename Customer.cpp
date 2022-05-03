@@ -130,6 +130,7 @@ Customer::Customer(string writtenString) {
 }
 
 string Customer::getOverviewData() {
+    int SPACE_GAP = 50;
     string builderString;
     DatabaseConnection db = DatabaseConnection();
 
@@ -137,8 +138,8 @@ string Customer::getOverviewData() {
     vector<Book> borrowedList = db.getCustomersBorrowedBooks(this->name);
     if (!borrowedList.empty()) {
         for (const Book &borrowed : borrowedList) {
-            builderString += this->name + "                ";
-            builderString += borrowed.title + "                        ";
+            builderString += this->name + string(SPACE_GAP, ' ');
+            builderString += borrowed.title + string(SPACE_GAP, ' ');
             builderString += std::to_string(borrowed.dueDate.tm_mon+1);
             builderString += '/';
             builderString += std::to_string(borrowed.dueDate.tm_mday);

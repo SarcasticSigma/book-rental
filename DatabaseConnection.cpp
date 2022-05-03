@@ -96,6 +96,10 @@ void DatabaseConnection::_saveCustomers() {
 }
 
 void DatabaseConnection::deleteCustomer(const string &customerName) {
+    if (!getCustomersBorrowedBooks(customerName).empty()) {
+        cout << "Can't delete a user who still has books!";
+        return;
+    }
     int targetIndex;
     //TODO: Don't allow deletion unless no books are borrowed.
     for (int i = 0; i < customerList.size(); i++) {
@@ -172,13 +176,17 @@ void DatabaseConnection::loadCustomers() {
 }
 
 void DatabaseConnection::rentBook(string bookName, string customerName) {
+    if (getCustomersBorrowedBooks(customerName).size() >= 7) {
+        cout << "Can't rent a book, already has 7";
+        return;
+    }
+
     int targetIndex = -1;
     for (int i = 0; i < bookList.size(); i++) {
         if (bookName == bookList[i].title) {
             targetIndex = i;
         }
     }
-
     Book updatedBook = bookList[targetIndex];
     updatedBook.borrowedBy = customerName;
     std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
@@ -192,3 +200,66 @@ void DatabaseConnection::rentBook(string bookName, string customerName) {
     reloadData();
 
 }
+
+
+/// Returns a book from a customer.
+/// \param targetBookName The name of the book to be returned.
+/// \param targetCustomerName The name of the customer from which the book is being returned.
+/// \return A double representing a price in USD that the rental of the book cost.
+void DatabaseConnection::returnBook(string targetBookName, string targetCustomerName) {
+    int targetIndex = -1;
+    for (int i = 0; i < bookList.size(); i++) {
+        if (targetBookName == bookList[i].title) {
+            targetIndex = i;
+        }
+    }
+    std::chrono::system_clock::time_point tp = std::chrono::system_clock::now();
+    time_t tt = std::chrono::system_clock::to_time_t(tp);
+    tm currentTime = *localtime(&tt);
+    double owedFees;
+    int years, months, days;
+    Book finalCopy = bookList[targetIndex];
+    years = finalCopy.dueDate.tm_year - currentTime.tm_year;
+    months = finalCopy.dueDate.tm_mon - currentTime.tm_mon;
+    days = finalCopy.dueDate.tm_mday - currentTime.tm_mday;
+    double totalDays = years * 365.25 * months * 1 / 12 * days;
+    if (totalDays > 7) {
+        owedFees = 3 * (totalDays - 7);
+    } else if (totalDays <= 7) {
+        owedFees = 0;
+    }
+    Book updatedBook = bookList[targetIndex];
+    updatedBook.borrowedBy = "None";
+    updatedBook.dueDate = tm();
+    updatedBook.dueDate.tm_year = 0;
+    updatedBook.dueDate.tm_mon = 0;
+    updatedBook.dueDate.tm_mday = 0;
+    updatedBook.isAvailable = true;
+    bookList.erase(bookList.begin() + targetIndex);
+    if(targetIndex == 0){
+        bookList.insert(bookList.begin() + targetIndex, updatedBook);
+    }else{
+        bookList.insert(bookList.begin() + targetIndex - 1, updatedBook);
+    }
+    reloadData();
+    cout << "You owe $" << owedFees << " in late charges due to being " << totalDays <<" days late returning the book " << targetBookName;
+}
+
+void DatabaseConnection::getBook(string bookName) {
+    for (Book bk : bookList) {
+        if (bk.title == bookName) {
+            return;
+        }
+    }
+    return;
+}
+
+void DatabaseConnection::getCustomer(string customerName) {
+    for (Customer cust : customerList) {
+        if (cust.getName() == customerName) {
+            return;
+        }
+    }
+    return;
+}
+

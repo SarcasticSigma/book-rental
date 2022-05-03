@@ -23,7 +23,7 @@ using std::istream;
 class Book {
 public:
     bool isAvailable;
-    string borrowedBy = "NoOne";
+    string borrowedBy = "None";
     string title, author, publisher;
     tm releaseDate{};
 tm dueDate;
@@ -33,8 +33,6 @@ tm dueDate;
     Book(const string &writtenString);
 
     void updateBook();
-
-    double returnBook(string customerName);
 
     string getBorrowedBy();
 
