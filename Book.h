@@ -26,19 +26,32 @@ public:
     string borrowedBy = "None";
     string title, author, publisher;
     tm releaseDate{};
-tm dueDate;
+    tm dueDate;
 
+    /// Constructor for a book.
+    /// \param title The title of the book
+    /// \param author The author of the book.
+    /// \param publisher The publisher of the book.
+    /// \param releaseYear The year the book was released.
+    /// \param releaseMonth The month the book was released.
+    /// \param releaseDay The day the book was released.
     Book(string title, string author, string publisher, int releaseYear, int releaseMonth, int releaseDay);
 
-    Book(const string &writtenString);
+    /// Deserializes a serialized version of a book.
+    /// \param writtenString The serialized string.
+    explicit Book(const string &writtenString);
 
-    void updateBook();
+    /// Gets the borrowedBy field.
+    /// \return The name of the customer borrowing the book.
+    string getBorrowedBy() const;
 
-    string getBorrowedBy();
+    /// Constructs a string representing the book for serialization.
+    /// \return A string representing the Book.
+    string getWritableString() const;
 
-    string getWritableString();
-
-    string getOverviewData();
+    /// Gets a string representing some basic data about the Book for printing.
+    /// \return A string with the the data, with spaces separating each data item for pretty printing.
+    string getOverviewData() const;
 };
 
 

@@ -60,8 +60,7 @@ Book::Book(const string &writtenString) {
     dueDate.tm_mday = stoi(dataStrings[10]);
 }
 
-//Format: TITLE_AUTHOR_PUBLISHER_YEARPUBLISHED_MONTHPUBLISHED_DAYPUBLISHED_ISAVAILABLE_CURRENTLYBORROWEDBY_DUEDATEYEAR_DUEDATEMONTH_DUEDATEDAY
-string Book::getWritableString() {
+string Book::getWritableString() const {
     string stringBuilder;
     stringBuilder += Customer::encryptSpaces(this->title);
     stringBuilder += "_";
@@ -101,7 +100,7 @@ string Book::getWritableString() {
     return stringBuilder;
 }
 
-string Book::getOverviewData() {
+string Book::getOverviewData() const {
     int SIZE_GAP = 50;
     string builderString;
     DatabaseConnection db = DatabaseConnection();
@@ -112,7 +111,7 @@ string Book::getOverviewData() {
     return builderString;
 }
 
-string Book::getBorrowedBy() {
+string Book::getBorrowedBy() const {
     return this->borrowedBy;
 }
 

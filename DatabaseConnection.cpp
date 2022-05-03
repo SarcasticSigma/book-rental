@@ -80,7 +80,7 @@ void DatabaseConnection::addBook(const Book &book) {
 void DatabaseConnection::_saveBooks() {
     vector<Book> saveBookList = this->bookList;
     ofstream out(targetBookFile, ofstream::trunc);
-    for (Book book : saveBookList) {
+    for (const Book& book : saveBookList) {
         out << book.getWritableString();
     }
     out.close();
@@ -101,7 +101,6 @@ void DatabaseConnection::deleteCustomer(const string &customerName) {
         return;
     }
     int targetIndex;
-    //TODO: Don't allow deletion unless no books are borrowed.
     for (int i = 0; i < customerList.size(); i++) {
         if (customerName == customerList[i].getName()) {
             targetIndex = i;
@@ -141,12 +140,9 @@ void DatabaseConnection::reloadData() {
 }
 
 void DatabaseConnection::loadBooks() {
-
     bookList.clear();
     string serializedBook;
-
     ifstream myFile;
-
     myFile.close();
     myFile.open(targetBookFile);
     if (myFile.is_open()) {
@@ -224,7 +220,6 @@ void DatabaseConnection::returnBook(string targetBookName, string targetCustomer
     tm currentTime = *localtime(&tt);
 
     double owedFees = 0.0;
-    int years, months, days;
     Book finalCopy = bookList[targetIndex];
     const int monthDays[12] = {31, 28, 31, 30, 31, 30,
                                31, 31, 30, 31, 30, 31};
@@ -238,7 +233,6 @@ void DatabaseConnection::returnBook(string targetBookName, string targetCustomer
 
     int totalLateDaysElapsed = 0;
     int monthdaysElapsed = currentTime.tm_mday - dueDateDay;
-    int monthsElapsed = currentTime.tm_mon - dueDateMonth;
     int yearsElapsed = (currentTime.tm_year + 1900) - dueDateYear;
     totalLateDaysElapsed += monthdaysElapsed;
     for (int i = dueDateMonth; i < currentTime.tm_mon; i++) {
@@ -280,22 +274,5 @@ void DatabaseConnection::returnBook(string targetBookName, string targetCustomer
     builderString += string( (SIZE_GAP-std::to_string(SIZE_GAP - totalLateDaysElapsed+7).length())-5, ' ');
     builderString += "$"+std::to_string(owedFees);
     cout << builderString;
-}
-
-void DatabaseConnection::getBook(string bookName) {
-    for (Book bk : bookList) {
-        if (bk.title == bookName) {
-            return;
-        }
-    }
-    }
-
-void DatabaseConnection::getCustomer(string customerName) {
-    for (Customer cust : customerList) {
-        if (cust.getName() == customerName) {
-            return;
-        }
-    }
-    return;
 }
 

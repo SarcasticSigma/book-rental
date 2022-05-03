@@ -1,6 +1,40 @@
-NewBook_NewAuthor_NewPublisher_2004_4_2_1_None_0_0_0
-Harry|Plotter_JK|Rowlking_Very|Nice|Publishing|Company_2002_2_25_1_None_0_0_0
-Testing|Book_Author_Publisher_1902_4_3_1_None_0_0_0
-The|Name|of|the|Wind_Patrick|Rothfuss_Something|Publishing_2002_4_5_1_None_0_0_0
-ALokks_Asdsk_asd_2002_4_6_1_None_0_0_0
-Aokasd_Author_Publisher_2022_8_21_1_None_0_0_0
+Program starts
+User is locked into an infinite loop to allow multiple operations without restarting the program.
+User is prompted to select one of seven options corresponding to the previously mentioned commands.
+User selects a command.
+    Add commands:
+        User is prompted to enter data corresponding to the object they want to add to the database
+            DatabaseConnection is created which establishes a connection to the datafiles and writes the new data to them and the corresponding datafield on itself.
+    Delete command:
+        User is prompted to enter the name of the target customer to delete.
+            DatabaseConnection is created which establishes a connection to the datafiles the datafield
+                CustomerList is updated, removing the targetcustomer
+                Database refreshes datafiles by writing the current lists to them, effectively destroying the old customer.
+    Rent book:
+        User is prompted to enter the name of the customer renting
+        User is prompted to enter the name of the book to be rented
+            DatabaseConnection is created which establishes a connection to the datafiles the datafield
+                The original bookList is copied.
+                BookList is searched for the target book
+                the target book's data is updated to reflect that it's rented.
+                The old bookList object is delete and a new one is created with the target book's values changed.
+                The new bookList object is assigned to the datafield for bookList.
+                Database refreshes datafiles by writing the current lists to them, effectively destroying the old book and replacing it with the rented one.
+    Return book:
+        User is prompted to enter the name of the customer renting
+        User is prompted to enter the name of the book to be rented
+            DatabaseConnection is created which establishes a connection to the datafiles the datafield
+                The original bookList is copied.
+                BookList is searched for the target book
+                Information such as days due and customer name are used to generate a report about rental and this report is saved to a string.
+                the target book's data is updated to reflect that it's no longer rented.
+                The old bookList object is delete and a new one is created with the target book's values changed.
+                The new bookList object is assigned to the datafield for bookList.
+                Database refreshes datafiles by writing the current lists to them, effectively destroying the old book and replacing it with the rented one.
+                The report string is sent to standard output.
+    List all customers:
+        For each customer in the database, a string representing a few points of information is added to
+        a string and then the string is printed in an easily readable format.
+    List all books:
+        For each book in the database, a string representing a few points of information is added to
+                a string and then the string is printed in an easily readable format.

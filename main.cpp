@@ -7,33 +7,16 @@
 ****************************************/
 #include <iostream>
 #include <string>
-#include <iomanip>
 #include <vector>
 #include <ctime>
 #include <chrono>
-#include <conio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <cstdio>
-#include <cstdlib>
 #include "DatabaseConnection.h"
-#include <sstream>
-#include <sys/stat.h>
 // for windows mkdir
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "EndlessLoop"
 #ifdef _WIN32
 
 #include <direct.h>
 
 #endif
-
-#include <sys/stat.h>
-#include <sys/stat.h>
-#include <string>
-#include <fstream>
-#include <ctime>
-#include "DatabaseConnection.h"
 
 int getTargetFunction();
 
@@ -136,15 +119,15 @@ int main() {
                 for (Book bk : db.bookList) {
                     if (bk.title == targetBookName) {
                         flagBookExists = true;
-                        if(bk.isAvailable){
+                        if (bk.isAvailable) {
                             flagAvailable = true;
                         }
                     }
                 }
                 if (flagBookExists && flagAvailable) {
                     db.rentBook(targetBookName, targetCustomerName);
-                } else if(!flagBookExists){ cout << "That book doesn't exists!"; }
-                else if(!flagAvailable){
+                } else if (!flagBookExists) { cout << "That book doesn't exists!"; }
+                else if (!flagAvailable) {
                     cout << "That book is not available!";
                 }
             } else {
@@ -191,7 +174,7 @@ int main() {
         }
             //List all customers
         else if (target == 6) {
-            cout << "Customer Name" + string(37, ' ') + "Currently Borrowed Books" +  string(27, ' ') + "Due Date\n";
+            cout << "Customer Name" + string(37, ' ') + "Currently Borrowed Books" + string(27, ' ') + "Due Date\n";
             vector<Customer> customerList = db.customerList;
             for (Customer c: customerList) {
                 cout << c.getOverviewData();
@@ -200,7 +183,7 @@ int main() {
             //List all books
         else if (target == 7) {
             vector<Book> bookList = db.bookList;
-            cout << "Book Title" + string(40, ' ') + "Borrowed By" +  string(39, ' ') + "Is available?\n";
+            cout << "Book Title" + string(40, ' ') + "Borrowed By" + string(39, ' ') + "Is available?\n";
             for (Book b: bookList) {
                 cout << b.getOverviewData();
 
@@ -222,7 +205,7 @@ int getTargetFunction() {
             break;
         } else {
             cout
-            << "Please select an option from the following: \n1. Add customer\n2. Delete Customer\n3. Add book\n4. Rent a book out\n5. Return a book\n6. List all customers\n7. List all books"
+                    << "Please select an option from the following: \n1. Add customer\n2. Delete Customer\n3. Add book\n4. Rent a book out\n5. Return a book\n6. List all customers\n7. List all books"
                     << endl;
         }
     }
@@ -230,4 +213,3 @@ int getTargetFunction() {
     return userInput;
 }
 
-#pragma clang diagnostic pop

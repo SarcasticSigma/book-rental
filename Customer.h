@@ -21,75 +21,39 @@ using std::istream;
 
 class Customer {
 private:
-    Customer(string name, string address, string phoneNumber, tm registerDate, vector<int> bookIds);
-
     string name, address, phoneNumber;
     tm registerDate{};
-    vector<int> borrowedBookIds;
-
-    //Checks if the customer can borrow more books.
-    bool _canBorrowMoreBooks();
-
-    /// Removes the book from the borrowed book list.
-    /// \param book The book to remove.
-    /// \return Whether the book was successfully removed.
-    void _deleteBookIdFromRental(int bookId);
-
-
-
-    /// Adds the book to the borrowed book list.
-    /// \param book The book to add.
-    void _addBookIdToRental(int bookId);
-
 public:
+    /// Creates a customer object.
+    /// \param name The name of the customer.
+    /// \param address The address of the customer.
+    /// \param phoneNumber The phone number of the customer.
+    /// \param registerDate The date the customer was registered.
     Customer(string name, string address, string phoneNumber, tm registerDate);
 
-    Customer(string writtenString);
-
+    /// Deserializes a serialized version of a customer.
+    /// \param writtenString The serialized string.
+    explicit Customer(const string &writtenString);
+    /// Changes the spaces in a string into the | character for data serialization.
+    /// \param decryptedString The string with spaces in it.
+    /// \return The string with |'s in it.
     static string encryptSpaces(const string &decryptedString);
 
+    /// Changes the | characters in a string to spaces for data deserialization.
+    /// \param encryptedString The string with |'s in it.
+    /// \return The string with spaces in it.
     static string decryptSpaces(const string &encryptedString);
 
-
-    //Getters and setters.
-    void setName(string
-                 name);
-
-    void setAddress(string
-                    address);
-
-    void setPhoneNumber(string phoneNumber);
-
-    void setRegisterDate(tm registerDate);
-
+    /// Gets the name of the customer.
+    /// \return The name of the customer.
     string getName();
 
-    string getAddress();
-
-    string getPhoneNumber();
-
-    tm getRegisterDate();
-
-    /// Borrows a book to the customer.
-    /// \param book The book to borrow.
-    /// \return Whether or not the book was succesfully borrowed.
-    bool borrowBook(Book book);
-
-    /// Gets the amount the customer owes on a book.
-    /// \return
-    double getOwedForBook();
-
-/// Sums the total owed for all borrowed books.
-/// \return
-    double getTotalOwed();
-
-    double returnBook(Book book);
-
-    vector<int> getBorrowedBookIds();
-
+    /// Serializes the customer into a string.
+    /// \return A string represnting the customer to be written to the data file.
     std::string getWritableString();
 
-
+    /// Gets a string representing some basic data about the customer for printing.
+    /// \return A string with the the data, with spaces separating each data item for pretty printing.
     string getOverviewData();
 };
 

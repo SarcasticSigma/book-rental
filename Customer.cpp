@@ -9,55 +9,8 @@ Customer::Customer(string name, string address, string phoneNumber, tm registerD
     this->registerDate = registerDate;
 }
 
-Customer::Customer(string name, string address, string phoneNumber, tm registerDate = tm(),
-                   vector<int> bookIds = vector<int>()) {
-    this->name = std::move(name);
-    this->address = std::move(address);
-    this->phoneNumber = std::move(phoneNumber);
-    this->registerDate = registerDate;
-}
-
-bool Customer::_canBorrowMoreBooks() {
-    return this->borrowedBookIds.size() < 7;
-}
-
-tm Customer::getRegisterDate() {
-    return registerDate;
-}
-
-string Customer::getPhoneNumber() {
-    return this->phoneNumber;
-}
-
-string Customer::getAddress() {
-    return this->address;
-}
-
 string Customer::getName() {
     return this->name;
-}
-
-void Customer::setRegisterDate(tm newRegisterDate) {
-    this->registerDate = newRegisterDate;
-}
-
-void Customer::setPhoneNumber(string newPhoneNumber) {
-    this->phoneNumber = std::move(newPhoneNumber);
-
-}
-
-void Customer::_addBookIdToRental(int bookId) {
-    borrowedBookIds.push_back(bookId);
-}
-
-void Customer::_deleteBookIdFromRental(int bookId) {
-    int targetDeletion;
-    for (int i = 0; i <= borrowedBookIds.size(); i++) {
-        if (borrowedBookIds[i] == bookId) {
-            targetDeletion = i;
-        }
-    }
-    borrowedBookIds.erase(borrowedBookIds.begin() + targetDeletion);
 }
 
 std::string Customer::getWritableString() {
@@ -101,7 +54,7 @@ string Customer::decryptSpaces(const string &encryptedString) {
 
 }
 
-Customer::Customer(string writtenString) {
+Customer::Customer(const string& writtenString) {
     string customerLine = Customer::decryptSpaces(writtenString);
     vector<string> dataStrings = vector<string>();
     string dataString;
