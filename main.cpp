@@ -1,10 +1,3 @@
-/****************************************
-* Student Name: Samuel Wiliams
-* Date Due: May 3, 2022
-* Date Submitted: May 3, 2022
-* Program Name: BookReservationSystem
-* Program Description: A book reservation system with a command line GUI.
-****************************************/
 #include <iostream>
 #include <string>
 #include <vector>
